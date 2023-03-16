@@ -1,0 +1,16 @@
+A <Transporte Escolar Ltda> é uma empresa especializada em transporte escolar. Com sede na cidade de Itapevi, possui <10> anos de atuação no segmento. O serviço prestado envolve o transporte de estudantes de suas casas para a escola e vice-versa, utilizando veículos com capacidade de até <20> assentos. A maioria dos estudantes atendidos pela empresa tem entre 5 e 10 anos de idade e mora num raio de até <5km> da escola onde estudam.
+
+O período de maior demanda pelo serviço da empresa é entre os meses de dezembro e janeiro, devido ao fato de que o contrato de prestação de serviço tem duração de 1 ano, sendo necessária a renovação ao final desse período.
+
+Todos os processos da empresa são realizados manualmente, com o uso de documentos físicos. Isso tem causado muitos problemas, devido à dificuldade em preencher muitos registros à mão.
+
+O objetivo da empresa a longo prazo é automatizar todos os processos, desde a parte financeira até a divulgação de seus serviços. Mas, a curto prazo, a meta é adquirir um sistema capaz de realizar o preenchimento dos contratos de prestação de serviço. Dessa forma, o processo para captar um novo cliente seria muito mais rápido e a busca por informações dos estudantes seria feita instantaneamente.
+
+Funcionalidades:
+
+* O sistema deve ter uma tela para cadastrar todas as informações de um contrato físico, permitindo o armazenamento em um banco de dados. Nesta tela, os campos serão os seguintes: <...>;
+* Visualização das informações de um contrato após o seu cadastro;
+* Busca de um contrato com base em alguns campos: CPF do responsável pelo estudante, CPF do estudante, ID do contrato;
+* Filtragem dos contratos que estão vencidos;
+* Exportação de contrato em formato PDF, caso o cliente solicite uma cópia (analisar a possibilidade de implementação);
+* Integração com a API de algum sistema de assinaturas eletrônicas (analisar a possibilidade de implementação).
