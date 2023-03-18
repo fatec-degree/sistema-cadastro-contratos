@@ -8,7 +8,7 @@ O objetivo da empresa a longo prazo é automatizar todos os processos, desde a p
 
 Funcionalidades:
 
-* O sistema deve ter uma tela para cadastrar todas as informações de um contrato físico, permitindo o armazenamento em um banco de dados. Nesta tela, os campos serão os seguintes: <...>;
+* O sistema deve ter uma tela para cadastrar todas as informações de um contrato físico, permitindo o armazenamento em um banco de dados;
 * Visualização das informações de um contrato após o seu cadastro;
 * Busca de um contrato com base em alguns campos: CPF do responsável pelo estudante, CPF do estudante, ID do contrato;
 * Filtragem dos contratos que estão vencidos;

@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+  <html lang="pt-br">
+  <head th:replace="~{ base :: head('Novo Contrato') }"></head>
+  <body>
+    <div th:replace="~{ base :: header}"></div>
+    <div class="container">
+      <form method="post" th:action="@{/contracts/new}">
+        <div>
+          <h2 class="mb-3">Dados do Aluno</h2>
+          <div class="mb-3">
+            <label for="studentName">Nome</label>
+            <input type="text" class="form-control" id="studentName">
+          </div>
+          <div class="mb-3">
+            <label class="form-label" for="studentRG">RG</label>
+            <input type="text" class="form-control" id="studentRG">
+          </div>
+          <div class="mb-3">
+            <label class="form-label" for="studentCPF">CPF</label>
+            <input type="text" class="form-control" id="studentCPF" placeholder="000.000.000-00">
+          </div>
+          <div class="mb-3">
+            <label class="form-label" for="dateOfBirthStudent">Data de Nascimento</label>
+            <input type="date" class="form-control" id="dateOfBirthStudent">
+          </div>
+        </div>
+        <div>
+          <h2 class="mb-3">Endereço do Aluno</h2>
+          <div class="mb-3">
+            <label for="zipCode">CEP</label>
+            <input type="number" class="form-control" id="zipCode" placeholder="00000-000">
+          </div>
+          <div class="mb-3">
+            <label for="street">Rua</label>
+            <input type="text" class="form-control" id="street">
+          </div>
+          <div class="mb-3">
+            <label for="houseNumber">Número</label>
+            <input type="number" class="form-control" id="houseNumber">
+          </div>
+          <div class="mb-3">
+            <label for="district">Bairro</label>
+            <input type="text" class="form-control" id="district">
+          </div>
+          <div class="mb-3">
+            <label for="city">Cidade</label>
+            <input type="text" class="form-control" id="city">
+          </div>
+        </div>
+        <div>
+          <h2 class="mb-3">Condições de saúde do aluno</h2>
+          <div class="mb-3">
+            <label for="sickness">Doenças</label>
+            <textarea class="form-control" id="sickness"></textarea>
+          </div>
+          <div class="mb-3">
+            <label for="allergies">Alergias</label>
+            <textarea class="form-control" id="allergies"></textarea>
+          </div>
+          <div>
+            <div class="mb-3">
+              <label for="medicine">Remédios</label>
+              <input type="text" class="form-control" id="medicine">
+            </div>
+            <div class="mb-3">
+              <label for="medicineTime">Horário</label>
+              <input type="time" class="form-control" id="medicineTime">
+            </div>
+          </div>
+          <div class="mb-3">
+            <label for="healthRemarks">Observações</label>
+            <textarea class="form-control" id="healthRemarks"></textarea>
+          </div>
+        </div>
+        <div>
+          <h2 class="mb-3">Dados da Escola</h2>
+          <div class="mb-3">
+            <label for="schoolName">Nome</label>
+            <textarea class="form-control" id="schoolName"></textarea>
+          </div>
+          <div class="mb-3">
+            <label for="zipCodeSchool">CEP</label>
+            <input type="number" class="form-control" id="zipCodeSchool" placeholder="00000-000">
+          </div>
+          <div class="mb-3">
+            <label for="streetSchool">Rua</label>
+            <input type="text" class="form-control" id="streetSchool">
+          </div>
+          <div class="mb-3">
+            <label for="schoolNumber">Número</label>
+            <input type="number" class="form-control" id="schoolNumber">
+          </div>
+          <div class="mb-3">
+            <label for="schoolDistrict">Bairro</label>
+            <input type="text" class="form-control" id="schoolDistrict">
+          </div>
+          <div class="mb-3">
+            <label for="schoolCity">Cidade</label>
+            <input type="text" class="form-control" id="schoolCity">
+          </div>
+        </div>
+        <div>
+          <h2 class="mb-3">Horário de entrada e saída do aluno</h2>
+          <div class="mb-3">
+            <label for="entryTime">Entrada</label>
+            <input type="time" class="form-control" id="entryTime">
+          </div>
+          <div class="mb-3">
+            <label for="departureTime">Saída</label>
+            <input type="time" class="form-control" id="departureTime">
+          </div>
+        </div>
+        <div>
+          <h2 class="mb-3">Dados do Responsável</h2>
+          <div class="mb-3">
+            <label for="responsibleName">Nome</label>
+            <input type="text" class="form-control" id="responsibleName">
+          </div>
+          <div class="mb-3">
+            <label class="form-label" for="responsibleRG">RG</label>
+            <input type="text" class="form-control" id="responsibleRG">
+          </div>
+          <div class="mb-3">
+            <label class="form-label" for="responsibleCPF">CPF</label>
+            <input type="text" class="form-control" id="responsibleCPF" placeholder="000.000.000-00">
+          </div>
+          <div class="mb-3">
+            <label class="form-label" for="dateOfBirthResponsible">Data de Nascimento</label>
+            <input type="date" class="form-control" id="dateOfBirthResponsible">
+          </div>
+          <div class="mb-3">
+            <label class="form-label" for="responsibleMainPhoneNumber">Contato Principal</label>
+            <input type="number" class="form-control" id="responsibleMainPhoneNumber" placeholder="(00) 00000-0000">
+          </div>
+          <div class="mb-3">
+            <label class="form-label" for="responsibleSecondaryPhoneNumber">Contato Secundário</label>
+            <input type="number" class="form-control" id="responsibleSecondaryPhoneNumber" placeholder="(00) 00000-0000">
+          </div>
+          <div class="mb-3">
+            <label class="form-label" for="responsibleEmail">E-mail</label>
+            <input type="email" class="form-control" id="responsibleEmail" placeholder="email@email.com">
+          </div>
+          <div class="mb-3">
+            <label class="form-label" for="responsibleRemarks">Observações</label>
+            <textarea class="form-control" id="responsibleRemarks"></textarea>
+          </div>
+        </div>
+        <div>
+          <h2 class="mb-3">Valores do Contrato</h2>
+          <div class="mb-3">
+            <label for="annualAmount">Valor Anual</label>
+            <input type="number" class="form-control" id="annualAmount">
+          </div>
+          <div class="mb-3">
+            <label for="year">Referente ao ano</label>
+            <input type="number" class="form-control" id="year">
+          </div>
+          <div class="mb-3">
+            <label for="firstParcel">Primeira Parcela</label>
+            <input type="date" class="form-control" id="firstParcel">
+          </div>
+          <div class="mb-3">
+            <label for="parcelValue">Valor das parcelas</label>
+            <input type="number" class="form-control" id="parcelValue">
+          </div>
+        </div>
+        <button class="btn btn-success" type="submit">Cadastrar</button>
+      </form>
+    </div>
+  </body>
+</html>
