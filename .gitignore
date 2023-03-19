@@ -174,3 +174,5 @@ mvnw
 *.cmd
 /.mvn
 # End of https://www.toptal.com/developers/gitignore/api/java,intellij+all,maven
+*.png.bak
+*.asta.lock
