@@ -22,9 +22,9 @@ public class Contract {
     @OneToOne
     private Responsible responsible;
     private BigDecimal amount;
-    private Integer currentYear;
-    private LocalDate start;
-    private LocalDate endDate;
-    private boolean expired;
+    private Integer year;
+    private LocalDate start = LocalDate.now();
+    private LocalDate end;
+    private boolean expired = false;
 
 }
