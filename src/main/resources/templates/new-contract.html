@@ -4,9 +4,10 @@
   <body>
     <div th:replace="~{ base :: header}"></div>
     <div class="container">
+      <div th:replace="~{base :: titleOutdoor('Novo Contrato')}"></div>
       <form method="post" th:action="@{/contracts/new}" th:object="${contractDto}">
         <div>
-          <h2 class="mb-3">Dados do Aluno</h2>
+          <h3 class="mb-3">Dados do Aluno</h3>
           <div class="mb-3">
             <label for="studentName">Nome</label>
             <input th:field="*{studentName}" type="text" class="form-control" id="studentName">
@@ -25,7 +26,7 @@
           </div>
         </div>
         <div>
-          <h2 class="mb-3">Endereço do Aluno</h2>
+          <h3 class="mb-3">Endereço do Aluno</h3>
           <div class="mb-3">
             <label for="zipCode">CEP</label>
             <input th:field="*{studentZipCode}" type="number" class="form-control" id="zipCode" placeholder="00000-000">
@@ -48,7 +49,7 @@
           </div>
         </div>
         <div>
-          <h2 class="mb-3">Condições de saúde do aluno</h2>
+          <h3 class="mb-3">Condições de saúde do aluno</h3>
           <div class="mb-3">
             <label for="sickness">Doenças</label>
             <textarea th:field="*{studentSickness}" class="form-control" id="sickness"></textarea>
@@ -69,7 +70,7 @@
           </div>
         </div>
         <div>
-          <h2 class="mb-3">Dados da Escola</h2>
+          <h3 class="mb-3">Dados da Escola</h3>
           <div class="mb-3">
             <label for="schoolName">Nome</label>
             <input th:field="*{schoolName}" type="text" class="form-control" id="schoolName">
@@ -96,7 +97,7 @@
           </div>
         </div>
         <div>
-          <h2 class="mb-3">Horário de entrada e saída do aluno</h2>
+          <h3 class="mb-3">Horário de entrada e saída do aluno</h3>
           <div class="mb-3">
             <label for="entryTime">Entrada</label>
             <input th:field="*{entryTime}" type="time" class="form-control" id="entryTime">
@@ -107,7 +108,7 @@
           </div>
         </div>
         <div>
-          <h2 class="mb-3">Dados do Responsável</h2>
+          <h3 class="mb-3">Dados do Responsável</h3>
           <div class="mb-3">
             <label for="responsibleName">Nome</label>
             <input th:field="*{responsibleName}" type="text" class="form-control" id="responsibleName">
@@ -142,7 +143,7 @@
           </div>
         </div>
         <div>
-          <h2 class="mb-3">Valores do Contrato</h2>
+          <h3 class="mb-3">Valores do Contrato</h3>
           <div class="mb-3">
             <label for="annualAmount">Valor Anual</label>
             <input th:field="*{amount}" type="number" class="form-control" id="annualAmount">
