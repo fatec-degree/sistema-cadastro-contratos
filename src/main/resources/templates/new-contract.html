@@ -12,17 +12,19 @@
             <label for="studentName">Nome</label>
             <input th:field="*{studentName}" type="text" class="form-control" id="studentName">
           </div>
-          <div class="mb-3">
-            <label class="form-label" for="studentRG">RG</label>
-            <input th:field="*{studentRg}" type="text" class="form-control" id="studentRG">
-          </div>
-          <div class="mb-3">
-            <label class="form-label" for="studentCPF">CPF</label>
-            <input th:field="*{studentCpf}" type="text" class="form-control" id="studentCPF" placeholder="000.000.000-00">
-          </div>
-          <div class="mb-3">
-            <label class="form-label" for="dateOfBirthStudent">Data de Nascimento</label>
-            <input th:field="*{studentDateOfBirth}" type="date" class="form-control" id="dateOfBirthStudent">
+          <div class="row">
+            <div class="mb-3 col-4">
+              <label class="form-label" for="studentRG">RG</label>
+              <input th:field="*{studentRg}" type="text" class="form-control" id="studentRG">
+            </div>
+            <div class="mb-3 col-4">
+              <label class="form-label" for="studentCPF">CPF</label>
+              <input th:field="*{studentCpf}" type="text" class="form-control" id="studentCPF" placeholder="000.000.000-00">
+            </div>
+            <div class="mb-3 col-4">
+              <label class="form-label" for="dateOfBirthStudent">Data de Nascimento</label>
+              <input th:field="*{studentDateOfBirth}" type="date" class="form-control" id="dateOfBirthStudent">
+            </div>
           </div>
         </div>
         <div>
@@ -31,80 +33,91 @@
             <label for="zipCode">CEP</label>
             <input th:field="*{studentZipCode}" type="number" class="form-control" id="zipCode" placeholder="00000-000">
           </div>
-          <div class="mb-3">
-            <label for="street">Rua</label>
-            <input th:field="*{studentStreet}" type="text" class="form-control" id="street">
+          <div class="row">
+            <div class="mb-3 col-8">
+              <label for="street">Logradouro</label>
+              <input th:field="*{studentStreet}" type="text" class="form-control" id="street">
+            </div>
+            <div class="mb-3 col-4">
+              <label for="houseNumber">Número</label>
+              <input th:field="*{studentHouseNumber}" type="number" class="form-control" id="houseNumber">
+            </div>
           </div>
-          <div class="mb-3">
-            <label for="houseNumber">Número</label>
-            <input th:field="*{studentHouseNumber}" type="number" class="form-control" id="houseNumber">
-          </div>
-          <div class="mb-3">
-            <label for="district">Bairro</label>
-            <input th:field="*{studentDistrict}" type="text" class="form-control" id="district">
-          </div>
-          <div class="mb-3">
-            <label for="city">Cidade</label>
-            <input th:field="*{studentCity}" type="text" class="form-control" id="city">
+          <div class="row">
+            <div class="mb-3 col-6">
+              <label for="district">Bairro</label>
+              <input th:field="*{studentDistrict}" type="text" class="form-control" id="district">
+            </div>
+            <div class="mb-3 col-6">
+              <label for="city">Cidade</label>
+              <input th:field="*{studentCity}" type="text" class="form-control" id="city">
+            </div>
           </div>
         </div>
         <div>
           <h3 class="mb-3">Condições de saúde do aluno</h3>
-          <div class="mb-3">
-            <label for="sickness">Doenças</label>
-            <textarea th:field="*{studentSickness}" class="form-control" id="sickness"></textarea>
+          <div class="row">
+            <div class="mb-3 col-6">
+              <label for="sickness">Doenças</label>
+              <textarea th:field="*{studentSickness}" class="form-control" id="sickness"></textarea>
+            </div>
+            <div class="mb-3 col-6">
+              <label for="allergies">Alergias</label>
+              <textarea th:field="*{studentAllergies}" class="form-control" id="allergies"></textarea>
+            </div>
           </div>
-          <div class="mb-3">
-            <label for="allergies">Alergias</label>
-            <textarea th:field="*{studentAllergies}" class="form-control" id="allergies"></textarea>
-          </div>
-          <div>
-            <div class="mb-3">
+          <div class="row">
+            <div class="mb-3 col-6">
               <label for="medicines">Remédios</label>
               <textarea th:field="*{studentMedicines}" class="form-control" id="medicines"></textarea>
             </div>
-          </div>
-          <div class="mb-3">
-            <label for="healthRemarks">Observações</label>
-            <textarea th:field="*{studentHealthRemarks}" class="form-control" id="healthRemarks"></textarea>
+            <div class="mb-3 col-6">
+              <label for="healthRemarks">Observações</label>
+              <textarea th:field="*{studentHealthRemarks}" class="form-control" id="healthRemarks"></textarea>
+            </div>
           </div>
         </div>
         <div>
           <h3 class="mb-3">Dados da Escola</h3>
-          <div class="mb-3">
-            <label for="schoolName">Nome</label>
-            <input th:field="*{schoolName}" type="text" class="form-control" id="schoolName">
+          <div class="row">
+            <div class="mb-3 col-8">
+              <label for="schoolName">Nome</label>
+              <input th:field="*{schoolName}" type="text" class="form-control" id="schoolName">
+            </div>
+            <div class="mb-3 col-4">
+              <label for="zipCodeSchool">CEP</label>
+              <input th:field="*{schoolZipCode}" type="number" class="form-control" id="zipCodeSchool" placeholder="00000-000">
+            </div>
           </div>
-          <div class="mb-3">
-            <label for="zipCodeSchool">CEP</label>
-            <input th:field="*{schoolZipCode}" type="number" class="form-control" id="zipCodeSchool" placeholder="00000-000">
+          <div class="row">
+            <div class="mb-3 col-9">
+              <label for="streetSchool">Logradouro</label>
+              <input th:field="*{schoolStreet}" type="text" class="form-control" id="streetSchool">
+            </div>
+            <div class="mb-3 col-3">
+              <label for="schoolNumber">Número</label>
+              <input th:field="*{schoolNumber}" type="number" class="form-control" id="schoolNumber">
+            </div>
           </div>
-          <div class="mb-3">
-            <label for="streetSchool">Rua</label>
-            <input th:field="*{schoolStreet}" type="text" class="form-control" id="streetSchool">
+          <div class="row">
+            <div class="mb-3 col-6">
+              <label for="schoolDistrict">Bairro</label>
+              <input th:field="*{schoolDistrict}" type="text" class="form-control" id="schoolDistrict">
+            </div>
+            <div class="mb-3 col-6">
+              <label for="schoolCity">Cidade</label>
+              <input th:field="*{schoolCity}" type="text" class="form-control" id="schoolCity">
+            </div>
           </div>
-          <div class="mb-3">
-            <label for="schoolNumber">Número</label>
-            <input th:field="*{schoolNumber}" type="number" class="form-control" id="schoolNumber">
-          </div>
-          <div class="mb-3">
-            <label for="schoolDistrict">Bairro</label>
-            <input th:field="*{schoolDistrict}" type="text" class="form-control" id="schoolDistrict">
-          </div>
-          <div class="mb-3">
-            <label for="schoolCity">Cidade</label>
-            <input th:field="*{schoolCity}" type="text" class="form-control" id="schoolCity">
-          </div>
-        </div>
-        <div>
-          <h3 class="mb-3">Horário de entrada e saída do aluno</h3>
-          <div class="mb-3">
-            <label for="entryTime">Entrada</label>
-            <input th:field="*{entryTime}" type="time" class="form-control" id="entryTime">
-          </div>
-          <div class="mb-3">
-            <label for="departureTime">Saída</label>
-            <input th:field="*{departureTime}" type="time" class="form-control" id="departureTime">
+          <div class="row">
+            <div class="mb-3 col-6">
+              <label for="entryTime">Entrada</label>
+              <input th:field="*{entryTime}" type="time" class="form-control" id="entryTime">
+            </div>
+            <div class="mb-3 col-6">
+              <label for="departureTime">Saída</label>
+              <input th:field="*{departureTime}" type="time" class="form-control" id="departureTime">
+            </div>
           </div>
         </div>
         <div>
@@ -113,29 +126,33 @@
             <label for="responsibleName">Nome</label>
             <input th:field="*{responsibleName}" type="text" class="form-control" id="responsibleName">
           </div>
-          <div class="mb-3">
-            <label class="form-label" for="responsibleRG">RG</label>
-            <input th:field="*{responsibleRg}" type="text" class="form-control" id="responsibleRG">
+          <div class="row">
+            <div class="mb-3 col-4">
+              <label class="form-label" for="responsibleRG">RG</label>
+              <input th:field="*{responsibleRg}" type="text" class="form-control" id="responsibleRG">
+            </div>
+            <div class="mb-3 col-4">
+              <label class="form-label" for="responsibleCPF">CPF</label>
+              <input th:field="*{responsibleCpf}" type="text" class="form-control" id="responsibleCPF" placeholder="000.000.000-00">
+            </div>
+            <div class="mb-3 col-4">
+              <label class="form-label" for="dateOfBirthResponsible">Data de Nascimento</label>
+              <input th:field="*{responsibleDateOfBirth}" type="date" class="form-control" id="dateOfBirthResponsible">
+            </div>
           </div>
-          <div class="mb-3">
-            <label class="form-label" for="responsibleCPF">CPF</label>
-            <input th:field="*{responsibleCpf}" type="text" class="form-control" id="responsibleCPF" placeholder="000.000.000-00">
-          </div>
-          <div class="mb-3">
-            <label class="form-label" for="dateOfBirthResponsible">Data de Nascimento</label>
-            <input th:field="*{responsibleDateOfBirth}" type="date" class="form-control" id="dateOfBirthResponsible">
-          </div>
-          <div class="mb-3">
-            <label class="form-label" for="responsibleMainPhoneNumber">Contato Principal</label>
-            <input th:field="*{responsibleMainContact}" type="number" class="form-control" id="responsibleMainPhoneNumber" placeholder="(00) 00000-0000">
-          </div>
-          <div class="mb-3">
-            <label class="form-label" for="responsibleSecondaryPhoneNumber">Contato Secundário</label>
-            <input th:field="*{responsibleSecondaryContact}" type="number" class="form-control" id="responsibleSecondaryPhoneNumber" placeholder="(00) 00000-0000">
-          </div>
-          <div class="mb-3">
-            <label class="form-label" for="responsibleEmail">E-mail</label>
-            <input th:field="*{responsibleEmail}" type="email" class="form-control" id="responsibleEmail" placeholder="email@email.com">
+          <div class="row">
+            <div class="mb-3 col-4">
+              <label class="form-label" for="responsibleMainPhoneNumber">Contato Principal</label>
+              <input th:field="*{responsibleMainContact}" type="number" class="form-control" id="responsibleMainPhoneNumber" placeholder="(00) 00000-0000">
+            </div>
+            <div class="mb-3 col-4">
+              <label class="form-label" for="responsibleSecondaryPhoneNumber">Contato Secundário</label>
+              <input th:field="*{responsibleSecondaryContact}" type="number" class="form-control" id="responsibleSecondaryPhoneNumber" placeholder="(00) 00000-0000">
+            </div>
+            <div class="mb-3 col-4">
+              <label class="form-label" for="responsibleEmail">E-mail</label>
+              <input th:field="*{responsibleEmail}" type="email" class="form-control" id="responsibleEmail" placeholder="email@email.com">
+            </div>
           </div>
           <div class="mb-3">
             <label class="form-label" for="responsibleRemarks">Observações</label>
@@ -144,21 +161,25 @@
         </div>
         <div>
           <h3 class="mb-3">Valores do Contrato</h3>
-          <div class="mb-3">
-            <label for="annualAmount">Valor Anual</label>
-            <input th:field="*{amount}" type="number" class="form-control" id="annualAmount">
+          <div class="row">
+            <div class="mb-3 col-6">
+              <label for="annualAmount">Valor Anual</label>
+              <input th:field="*{amount}" type="number" class="form-control" id="annualAmount">
+            </div>
+            <div class="mb-3 col-6">
+              <label for="year">Referente ao ano</label>
+              <input th:field="*{year}" type="number" class="form-control" id="year">
+            </div>
           </div>
-          <div class="mb-3">
-            <label for="year">Referente ao ano</label>
-            <input th:field="*{year}" type="number" class="form-control" id="year">
-          </div>
-          <div class="mb-3">
-            <label for="firstParcel">Primeira Parcela</label>
-            <input type="date" class="form-control" id="firstParcel">
-          </div>
-          <div class="mb-3">
-            <label for="parcelValue">Valor das parcelas</label>
-            <input type="number" class="form-control" id="parcelValue">
+          <div class="row">
+            <div class="mb-3 col-6">
+              <label for="firstParcel">Primeira Parcela</label>
+              <input type="date" class="form-control" id="firstParcel">
+            </div>
+            <div class="mb-3 col-6">
+              <label for="parcelValue">Valor das parcelas</label>
+              <input type="number" class="form-control" id="parcelValue">
+            </div>
           </div>
         </div>
         <button class="btn btn-success" type="submit">Cadastrar</button>
