@@ -6,8 +6,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.util.List;
-
 @AllArgsConstructor @NoArgsConstructor
 @Getter @Setter
 @Entity
@@ -16,8 +14,6 @@ public class Responsible extends AbstractPerson {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @OneToMany
-    @JoinColumn(name = "responsible_id")
-    private List<Student> student;
+    private String remarks;
 
 }
