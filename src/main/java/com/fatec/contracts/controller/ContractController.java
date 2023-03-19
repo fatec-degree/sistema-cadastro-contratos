@@ -1,6 +1,6 @@
 package com.fatec.contracts.controller;
 
-import com.fatec.contracts.controller.dto.ContractDto;
+import com.fatec.contracts.controller.dto.request.ContractDto;
 import com.fatec.contracts.service.ContractService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -22,9 +22,9 @@ public class ContractController {
     }
 
     @PostMapping(path = "/new")
-    public ModelAndView save(ContractDto contractDto) {
+    public String save(ContractDto contractDto) {
         contractService.save(contractDto);
-        return new ModelAndView("home");
+        return "redirect:/";
     }
 
 }

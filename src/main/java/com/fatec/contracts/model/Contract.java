@@ -21,6 +21,8 @@ public class Contract {
     private ServiceProvider serviceProvider;
     @OneToOne
     private Responsible responsible;
+    @OneToOne
+    private Student student;
     private BigDecimal amount;
     private Integer year;
     private LocalDate start = LocalDate.now();

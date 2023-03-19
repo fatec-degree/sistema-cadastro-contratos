@@ -80,21 +80,6 @@ CREATE TABLE IF NOT EXISTS service_providers
     FOREIGN KEY (representative_id) REFERENCES persons (id)
 );
 
-CREATE TABLE IF NOT EXISTS contracts
-(
-    id                  BIGINT PRIMARY KEY AUTO_INCREMENT,
-    service_provider_id BIGINT,
-    responsible_id      BIGINT,
-    amount              REAL,
-    year                INTEGER,
-    start               DATE,
-    end                 DATE,
-    expired             BOOLEAN,
-
-    FOREIGN KEY (service_provider_id) REFERENCES service_providers (id),
-    FOREIGN KEY (responsible_id) REFERENCES responsibles (id)
-);
-
 CREATE TABLE IF NOT EXISTS students
 (
     id                  BIGINT PRIMARY KEY AUTO_INCREMENT,
@@ -114,5 +99,21 @@ CREATE TABLE IF NOT EXISTS students
     FOREIGN KEY (health_condition_id) REFERENCES health_conditions (id),
     FOREIGN KEY (address_id) REFERENCES addresses (id),
     FOREIGN KEY (responsible_id) REFERENCES responsibles (id)
+);
 
+CREATE TABLE IF NOT EXISTS contracts
+(
+    id                  BIGINT PRIMARY KEY AUTO_INCREMENT,
+    service_provider_id BIGINT,
+    responsible_id      BIGINT,
+    student_id          BIGINT,
+    amount              REAL,
+    year                INTEGER,
+    start               DATE,
+    end                 DATE,
+    expired             BOOLEAN,
+
+    FOREIGN KEY (service_provider_id) REFERENCES service_providers (id),
+    FOREIGN KEY (responsible_id) REFERENCES responsibles (id),
+    FOREIGN KEY (student_id) REFERENCES students (id)
 );

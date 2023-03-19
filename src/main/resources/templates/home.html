@@ -3,5 +3,33 @@
   <head th:replace="~{ base :: head('Contratos') }"></head>
   <body>
     <div th:replace="~{ base :: header }"></div>
+    <div class="container">
+      <table class="table">
+        <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Aluno</th>
+          <th scope="col">Responsável</th>
+          <th scope="col">Escola</th>
+          <th scope="col">Início do Contrato</th>
+          <th scope="col">Fim do Contrato</th>
+          <th scope="col">Valor Total</th>
+          <th scope="col">Ano</th>
+        </tr>
+        </thead>
+        <tbody th:each="contractResponseDto : ${contractsResponseDto}">
+        <tr>
+          <th scope="row" th:text="${contractResponseDto.id}"></th>
+          <td th:text="${contractResponseDto.studentName}"></td>
+          <td th:text="${contractResponseDto.responsibleName}"></td>
+          <td th:text="${contractResponseDto.schoolName}"></td>
+          <td th:text="${contractResponseDto.startContract}"></td>
+          <td th:text="${contractResponseDto.endContract}"></td>
+          <td th:text="${contractResponseDto.amount}"></td>
+          <td th:text="${contractResponseDto.year}"></td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
   </body>
 </html>

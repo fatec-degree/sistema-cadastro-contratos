@@ -1,4 +1,4 @@
-package com.fatec.contracts.controller.dto;
+package com.fatec.contracts.controller.dto.request;
 
 import com.fatec.contracts.model.*;
 import lombok.AllArgsConstructor;

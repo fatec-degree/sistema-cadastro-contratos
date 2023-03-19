@@ -1,13 +1,15 @@
 package com.fatec.contracts.service;
 
-import com.fatec.contracts.controller.dto.ContractDto;
+import com.fatec.contracts.controller.dto.request.ContractDto;
 import com.fatec.contracts.model.*;
 import com.fatec.contracts.repository.*;
+import com.fatec.contracts.repository.projections.ContractProjection;
 import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @AllArgsConstructor
 @Service
@@ -75,7 +77,7 @@ public class ContractService {
         student.setHealthCondition(healthConditionRepository.save(healthCondition));
         student.setSchedule(scheduleRepository.save(schedule));
         student.setResponsible(responsible);
-        studentRepository.save(student);
+        student = studentRepository.save(student);
 
         Contract contract = new Contract();
         contract.setAmount(contractDto.getAmount());
@@ -83,10 +85,15 @@ public class ContractService {
         contract.setStart(LocalDate.now());
         contract.setEnd(contract.getStart().plusMonths(12));
         contract.setResponsible(responsible);
+        contract.setStudent(student);
         ServiceProvider serviceProvider = serviceProviderRepository.findById(1L).get();
         contract.setServiceProvider(serviceProvider);
 
         return contractRepository.save(contract);
+    }
+
+    public List<ContractProjection> findAll() {
+        return contractRepository.findAllContractsForHome();
     }
 
 }
