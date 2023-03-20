@@ -3,7 +3,7 @@
   <head th:replace="~{ base :: head('Novo Contrato') }"></head>
   <body>
     <div th:replace="~{ base :: header}"></div>
-    <div class="container">
+    <div class="container"  style="margin-bottom: 5em">
       <div th:replace="~{base :: titleOutdoor('Novo Contrato')}"></div>
       <form method="post" th:action="@{/contracts/new}" th:object="${contractDto}">
         <div>
