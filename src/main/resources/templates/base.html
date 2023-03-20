@@ -17,6 +17,21 @@
             text-decoration: none;
             color: #fff;
         }
+        .footer {
+            text-align: center;
+            padding: 40px 0;
+            background-color: #24A55F;
+            margin-top: 5em;
+        }
+        .logo-footer {
+            font-family: 'Handlee', cursive;
+            font-size: 1.5em;
+        }
+        .footer .copyright {
+            color: #FFFFFF;
+            font-size: 15px;
+            margin: 20px 0;
+        }
     </style>
 </head>
 
@@ -44,3 +59,8 @@
 <div th:fragment="titleOutdoor(value)" class="mt-4 mb-3 p-3 bg-body-secondary rounded">
     <h1 class="display-4" th:text="${value}"></h1>
 </div>
+
+<footer th:fragment="footer" class="footer mt-10">
+    <span class="logo-footer">Transporte Escolar M&J</span>
+    <p class="copyright">© Copyright by Pedro Almeida</p>
+</footer>
