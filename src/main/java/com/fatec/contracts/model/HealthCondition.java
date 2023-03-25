@@ -19,4 +19,11 @@ public class HealthCondition {
     private String medicines;
     private String remarks;
 
+    @Override
+    public String toString() {
+        return "Doencas: " + sickness + ".\n" +
+               "Alergias: " + allergies + ".\n" +
+               "Remedios que faz uso: " + medicines + ".\n" +
+               "Observações: " + remarks + "\n.";
+    }
 }
