@@ -88,6 +88,9 @@ public class ContractService {
 
         Contract contract = new Contract();
         contract.setAmount(contractDto.getAmount());
+        contract.setFirstParcel(contractDto.getFirstParcel());
+        contract.setCollectionDay(contractDto.getCollectionDay());
+        contract.setParcelValue(contractDto.getParcelValue());
         contract.setYear(contractDto.getYear());
         contract.setStart(LocalDate.now());
         contract.setEnd(contract.getStart().plusMonths(12));

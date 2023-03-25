@@ -24,6 +24,9 @@ public class Contract {
     @OneToOne
     private Student student;
     private BigDecimal amount;
+    private LocalDate firstParcel;
+    private Integer collectionDay;
+    private BigDecimal parcelValue;
     private Integer year;
     private LocalDate start = LocalDate.now();
     private LocalDate end;

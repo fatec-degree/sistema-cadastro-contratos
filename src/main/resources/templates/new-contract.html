@@ -162,11 +162,15 @@
         <div>
           <h3 class="mb-3">Valores do Contrato</h3>
           <div class="row">
-            <div class="mb-3 col-6">
+            <div class="mb-3 col-4">
               <label for="annualAmount">Valor Anual</label>
               <input th:field="*{amount}" type="number" class="form-control" id="annualAmount">
             </div>
-            <div class="mb-3 col-6">
+            <div class="mb-3 col-4">
+              <label for="parcelValue">Valor da Parcela</label>
+              <input th:field="*{parcelValue}" type="number" class="form-control" id="parcelValue">
+            </div>
+            <div class="mb-3 col-4">
               <label for="year">Referente ao ano</label>
               <input th:field="*{year}" type="number" class="form-control" id="year">
             </div>
@@ -174,11 +178,11 @@
           <div class="row">
             <div class="mb-3 col-6">
               <label for="firstParcel">Primeira Parcela</label>
-              <input type="date" class="form-control" id="firstParcel">
+              <input th:field="*{firstParcel}" type="date" class="form-control" id="firstParcel">
             </div>
             <div class="mb-3 col-6">
-              <label for="parcelValue">Valor das parcelas</label>
-              <input type="number" class="form-control" id="parcelValue">
+              <label for="collectionDay">Dia de Pagamento</label>
+              <input th:field="*{collectionDay}" type="number" class="form-control" id="collectionDay">
             </div>
           </div>
         </div>

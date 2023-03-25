@@ -46,6 +46,9 @@ public class ContractDto {
     private String responsibleEmail;
     private String responsibleRemarks;
     private BigDecimal amount;
+    private LocalDate firstParcel;
+    private Integer collectionDay;
+    private BigDecimal parcelValue;
     private Integer year;
 
 }
