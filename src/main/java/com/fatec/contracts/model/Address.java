@@ -19,5 +19,9 @@ public class Address {
     private String district;
     private String city;
     private String number;
+    private String state;
 
+    public String getCompleteAddress() {
+        return street + ", " + number + " - " + district + " - " + city + ", " + state;
+    }
 }
