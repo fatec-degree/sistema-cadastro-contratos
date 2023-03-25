@@ -90,6 +90,7 @@ public class ContractService {
         contract.setAmount(contractDto.getAmount());
         contract.setFirstParcel(contractDto.getFirstParcel());
         contract.setCollectionDay(contractDto.getCollectionDay());
+        contract.setNumberOfParcels(contractDto.getNumberOfParcels());
         contract.setParcelValue(contractDto.getParcelValue());
         contract.setYear(contractDto.getYear());
         contract.setStart(LocalDate.now());
@@ -139,9 +140,9 @@ public class ContractService {
         fieldValues.put("Text34", contract.getYear().toString());
         fieldValues.put("Text35", contract.getYear().toString());
         fieldValues.put("Text36", contract.getAmount().toString());
-        fieldValues.put("Text37", "xxx");
-        fieldValues.put("Text38", "xxx");
-        fieldValues.put("Text39", "xxx");
+        fieldValues.put("Text37", contract.getNumberOfParcels().toString());
+        fieldValues.put("Text38", contract.getFirstParcel().toString());
+        fieldValues.put("Text39", contract.getCollectionDay().toString());
         fieldValues.put("Text40", contract.getStart().getDayOfMonth() + "");
         fieldValues.put("Text41", contract.getStart().getMonth().name());
         fieldValues.put("Text42", contract.getStart().getYear() + "");

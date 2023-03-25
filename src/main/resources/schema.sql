@@ -114,6 +114,7 @@ CREATE TABLE IF NOT EXISTS contracts
     amount              REAL,
     first_parcel        DATE,
     collection_day      INTEGER,
+    number_of_parcels   INTEGER,
     parcel_value        REAL,
     year                INTEGER,
     start               DATE,

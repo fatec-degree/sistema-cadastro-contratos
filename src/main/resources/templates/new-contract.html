@@ -167,20 +167,24 @@
               <input th:field="*{amount}" type="number" class="form-control" id="annualAmount">
             </div>
             <div class="mb-3 col-4">
+              <label for="numberOfParcels">Número de Parcelas</label>
+              <input th:field="*{numberOfParcels}" type="number" class="form-control" id="numberOfParcels">
+            </div>
+            <div class="mb-3 col-4">
               <label for="parcelValue">Valor da Parcela</label>
               <input th:field="*{parcelValue}" type="number" class="form-control" id="parcelValue">
             </div>
+          </div>
+          <div class="row">
             <div class="mb-3 col-4">
               <label for="year">Referente ao ano</label>
               <input th:field="*{year}" type="number" class="form-control" id="year">
             </div>
-          </div>
-          <div class="row">
-            <div class="mb-3 col-6">
+            <div class="mb-3 col-4">
               <label for="firstParcel">Primeira Parcela</label>
               <input th:field="*{firstParcel}" type="date" class="form-control" id="firstParcel">
             </div>
-            <div class="mb-3 col-6">
+            <div class="mb-3 col-4">
               <label for="collectionDay">Dia de Pagamento</label>
               <input th:field="*{collectionDay}" type="number" class="form-control" id="collectionDay">
             </div>

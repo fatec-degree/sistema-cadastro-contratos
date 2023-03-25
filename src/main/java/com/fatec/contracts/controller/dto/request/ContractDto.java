@@ -48,6 +48,7 @@ public class ContractDto {
     private BigDecimal amount;
     private LocalDate firstParcel;
     private Integer collectionDay;
+    private Integer numberOfParcels;
     private BigDecimal parcelValue;
     private Integer year;
 
