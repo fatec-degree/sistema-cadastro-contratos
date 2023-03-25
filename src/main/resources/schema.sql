@@ -1,4 +1,6 @@
-CREATE DATABASE IF NOT EXISTS contracts_db;
+DROP DATABASE IF EXISTS contracts_db;
+CREATE DATABASE contracts_db;
+USE contracts_db;
 
 CREATE TABLE IF NOT EXISTS addresses
 (
@@ -7,6 +9,7 @@ CREATE TABLE IF NOT EXISTS addresses
     street   VARCHAR(200),
     district VARCHAR(200),
     city     VARCHAR(200),
+    state     VARCHAR(200),
     number   VARCHAR(20)
 );
 
@@ -59,6 +62,7 @@ CREATE TABLE IF NOT EXISTS responsibles
     id                BIGINT PRIMARY KEY AUTO_INCREMENT,
     address_id        BIGINT,
     name              VARCHAR(200),
+    relationship      VARCHAR(50),
     rg                VARCHAR(15),
     cpf               VARCHAR(15),
     date_of_birth     DATE,

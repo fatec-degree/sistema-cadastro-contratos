@@ -1,30 +1,30 @@
-INSERT INTO addresses (zip_code, street, district, city, number)
+INSERT INTO addresses (zip_code, street, district, city, number, state)
 VALUES
-    ('12345-678', 'Rua das Flores', 'Centro', 'São Paulo', '123'),
-    ('54321-876', 'Avenida dos Bandeirantes', 'Vila Mariana', 'São Paulo', '456'),
-    ('98765-432', 'Rua do Bosque', 'Alto da Lapa', 'São Paulo', '789'),
-    ('01234-567', 'Avenida Paulista', 'Bela Vista', 'São Paulo', '1010'),
-    ('45678-901', 'Rua Oscar Freire', 'Jardim Paulista', 'São Paulo', '222'),
-    ('23456-789', 'Avenida Brasil', 'Jardim América', 'São Paulo', '333'),
-    ('89012-345', 'Rua Augusta', 'Consolação', 'São Paulo', '444'),
-    ('67890-123', 'Avenida Faria Lima', 'Itaim Bibi', 'São Paulo', '555'),
-    ('34567-890', 'Rua dos Pinheiros', 'Pinheiros', 'São Paulo', '666'),
-    ('90123-456', 'Rua do Ouvidor', 'São Bento', 'Rio de Janeiro', '123'),
-    ('76543-210', 'Avenida Atlântica', 'Copacabana', 'Rio de Janeiro', '456'),
-    ('32109-876', 'Rua das Laranjeiras', 'Laranjeiras', 'Rio de Janeiro', '789'),
-    ('65432-109', 'Rua Nossa Senhora de Copacabana', 'Copacabana', 'Rio de Janeiro', '1010'),
-    ('09876-543', 'Avenida Presidente Vargas', 'Centro', 'Rio de Janeiro', '1111'),
-    ('43210-987', 'Rua Barão de Mesquita', 'Tijuca', 'Rio de Janeiro', '2222'),
-    ('78901-234', 'Rua da Praia', 'Jardim Oceânico', 'Rio de Janeiro', '3333'),
-    ('56789-012', 'Avenida Brasil Central', 'Centro', 'Goiânia', '123'),
-    ('21098-765', 'Rua Padre Rolim', 'Savassi', 'Belo Horizonte', '456'),
-    ('54321-098', 'Rua Padre Eustáquio', 'Padre Eustáquio', 'Belo Horizonte', '789'),
-    ('45678-123', 'Avenida Afonso Pena', 'Centro', 'Belo Horizonte', '1010'),
-    ('98765-210', 'Rua dos Aimorés', 'Lourdes', 'Belo Horizonte', '1111'),
-    ('01234-567', 'Avenida das Américas', 'Barra da Tijuca', 'Rio de Janeiro', '2222'),
-    ('76543-210', 'Rua Oscar Niemeyer', 'Jardim Botânico', 'Rio de Janeiro', '3333'),
-    ('45678-901', 'Rua dos Inconfidentes', 'Savassi', 'Belo Horizonte', '4444'),
-    ('23456-789', 'Avenida Sete de Setembro', 'Centro', 'Curitiba', '123');
+    ('12345-678', 'Rua das Flores', 'Centro', 'Sao Paulo', '123', 'Sao Paulo'),
+    ('54321-876', 'Avenida dos Bandeirantes', 'Vila Mariana', 'São Paulo', '456', 'São Paulo'),
+    ('98765-432', 'Rua do Bosque', 'Alto da Lapa', 'São Paulo', '789', 'São Paulo'),
+    ('01234-567', 'Avenida Paulista', 'Bela Vista', 'São Paulo', '1010', 'São Paulo'),
+    ('45678-901', 'Rua Oscar Freire', 'Jardim Paulista', 'São Paulo', '222', 'São Paulo'),
+    ('23456-789', 'Avenida Brasil', 'Jardim América', 'São Paulo', '333', 'São Paulo'),
+    ('89012-345', 'Rua Augusta', 'Consolação', 'São Paulo', '444', 'São Paulo'),
+    ('67890-123', 'Avenida Faria Lima', 'Itaim Bibi', 'São Paulo', '555', 'São Paulo'),
+    ('34567-890', 'Rua dos Pinheiros', 'Pinheiros', 'São Paulo', '666', 'São Paulo'),
+    ('90123-456', 'Rua do Ouvidor', 'São Bento', 'Rio de Janeiro', '123', 'São Paulo'),
+    ('76543-210', 'Avenida Atlântica', 'Copacabana', 'Rio de Janeiro', '456', 'São Paulo'),
+    ('32109-876', 'Rua das Laranjeiras', 'Laranjeiras', 'Rio de Janeiro', '789', 'São Paulo'),
+    ('65432-109', 'Rua Nossa Senhora de Copacabana', 'Copacabana', 'Rio de Janeiro', '1010', 'São Paulo'),
+    ('09876-543', 'Avenida Presidente Vargas', 'Centro', 'Rio de Janeiro', '1111', 'São Paulo'),
+    ('43210-987', 'Rua Barão de Mesquita', 'Tijuca', 'Rio de Janeiro', '2222', 'São Paulo'),
+    ('78901-234', 'Rua da Praia', 'Jardim Oceânico', 'Rio de Janeiro', '3333', 'São Paulo'),
+    ('56789-012', 'Avenida Brasil Central', 'Centro', 'Goiânia', '123', 'São Paulo'),
+    ('21098-765', 'Rua Padre Rolim', 'Savassi', 'Belo Horizonte', '456', 'São Paulo'),
+    ('54321-098', 'Rua Padre Eustáquio', 'Padre Eustáquio', 'Belo Horizonte', '789', 'São Paulo'),
+    ('45678-123', 'Avenida Afonso Pena', 'Centro', 'Belo Horizonte', '1010', 'São Paulo'),
+    ('98765-210', 'Rua dos Aimorés', 'Lourdes', 'Belo Horizonte', '1111', 'São Paulo'),
+    ('01234-567', 'Avenida das Américas', 'Barra da Tijuca', 'Rio de Janeiro', '2222', 'São Paulo'),
+    ('76543-210', 'Rua Oscar Niemeyer', 'Jardim Botânico', 'Rio de Janeiro', '3333', 'São Paulo'),
+    ('45678-901', 'Rua dos Inconfidentes', 'Savassi', 'Belo Horizonte', '4444', 'São Paulo'),
+    ('23456-789', 'Avenida Sete de Setembro', 'Centro', 'Curitiba', '123', 'São Paulo');
 
 INSERT INTO schools (address_id, name)
 VALUES
@@ -70,21 +70,21 @@ VALUES
     ('Problemas de visão', 'Nenhum', 'Óculos', 'Recomendação de fazer exame oftalmológico anualmente'),
     ('Problemas de audição', 'Nenhum', 'Aparelho auditivo', 'Recomendação de fazer exame de audiometria anualmente');
 
-INSERT INTO responsibles (address_id, name, rg, cpf, date_of_birth, main_contact, secondary_contact, email, remarks)
+INSERT INTO responsibles (address_id, name, rg, cpf, date_of_birth, main_contact, secondary_contact, email, remarks, relationship)
 VALUES
-    (6, 'Luciana Santos', '123456789', '987654321', '1985-10-01', '(11) 98765-4321', '(11) 98765-4322', 'luciana.santos@example.com', ''),
-    (6, 'Ricardo Oliveira', '987654321', '123456789', '1978-05-14', '(11) 98765-4323', '(11) 98765-4324', 'ricardo.oliveira@example.com', ''),
-    (6, 'Fernanda Pereira', '654321789', '123456987', '1990-09-22', '(11) 98765-4325', '(11) 98765-4326', 'fernanda.pereira@example.com', ''),
-    (7, 'Roberto Silva', '456789321', '987654123', '1982-02-17', '(11) 98765-4327', '(11) 98765-4328', 'roberto.silva@example.com', ''),
-    (8, 'Maria Costa', '159753846', '654789321', '1975-12-30', '(11) 98765-4329', '(11) 98765-4330', 'maria.costa@example.com', ''),
-    (9, 'Fábio Souza', '753159852', '951753684', '1987-06-05', '(11) 98765-4331', '(11) 98765-4332', 'fabio.souza@example.com', ''),
-    (10, 'Carla Santos', '159753684', '753159852', '1980-03-20', '(11) 98765-4333', '(11) 98765-4334', 'carla.santos@example.com', ''),
-    (11, 'Marcos Ferreira', '456789123', '987654456', '1973-11-11', '(11) 98765-4335', '(11) 98765-4336', 'marcos.ferreira@example.com', ''),
-    (12, 'Aline Silva', '789456321', '321654987', '1995-07-02', '(11) 98765-4337', '(11) 98765-4338', 'aline.silva@example.com', ''),
-    (13, 'Lucas Almeida', '123456789', '987654321', '1992-03-10', '(11) 98765-4339', '(11) 98765-4340', 'lucas.almeida@example.com', ''),
-    (14, 'Gabriela Lima', '987654321', '123456789', '1989-11-25', '(11) 98765-4341', '(11) 98765-4342', 'gabriela.lima@example.com', ''),
-    (15, 'Luiz Fernando', '753951846', '159753864', '1984-08-15', '(11) 98765-4343', '(11) 98765-4344', 'luiz.fernando@example.com', ''),
-    (16, 'Isabela Oliveira', '456789123', '987654456', '1998-06-21', '(11) 98765-4345', '(11) 98765-4346', 'isabela.oliveira@example.com', '');
+    (6, 'Luciana Santos', '123456789', '987654321', '1985-10-01', '(11) 98765-4321', '(11) 98765-4322', 'luciana.santoss@example.com', '', 'Mãe'),
+    (6, 'Ricardo Oliveira', '987654321', '123456789', '1978-05-14', '(11) 98765-4323', '(11) 98765-4324', 'ricardo.oliveira@example.com', '', 'Pai'),
+    (6, 'Fernanda Pereira', '654321789', '123456987', '1990-09-22', '(11) 98765-4325', '(11) 98765-4326', 'fernanda.pereira@example.com', '','Mãe'),
+    (7, 'Roberto Silva', '456789321', '987654123', '1982-02-17', '(11) 98765-4327', '(11) 98765-4328', 'roberto.silva@example.com', '', 'Pai'),
+    (8, 'Maria Costa', '159753846', '654789321', '1975-12-30', '(11) 98765-4329', '(11) 98765-4330', 'maria.costa@example.com', '', 'Mãe'),
+    (9, 'Fábio Souza', '753159852', '951753684', '1987-06-05', '(11) 98765-4331', '(11) 98765-4332', 'fabio.souza@example.com', '', 'Pai'),
+    (10, 'Carla Santos', '159753684', '753159852', '1980-03-20', '(11) 98765-4333', '(11) 98765-4334', 'carla.santos@example.com', '', 'Avó'),
+    (11, 'Marcos Ferreira', '456789123', '987654456', '1973-11-11', '(11) 98765-4335', '(11) 98765-4336', 'marcos.ferreira@example.com', '', 'Pai'),
+    (12, 'Aline Silva', '789456321', '321654987', '1995-07-02', '(11) 98765-4337', '(11) 98765-4338', 'aline.silva@example.com', '', 'Mãe'),
+    (13, 'Lucas Almeida', '123456789', '987654321', '1992-03-10', '(11) 98765-4339', '(11) 98765-4340', 'lucas.almeida@example.com', '', 'Pai'),
+    (14, 'Gabriela Lima', '987654321', '123456789', '1989-11-25', '(11) 98765-4341', '(11) 98765-4342', 'gabriela.lima@example.com', '', 'Mãe'),
+    (15, 'Luiz Fernando', '753951846', '159753864', '1984-08-15', '(11) 98765-4343', '(11) 98765-4344', 'luiz.fernando@example.com', '', 'Avô'),
+    (16, 'Isabela Oliveira', '456789123', '987654456', '1998-06-21', '(11) 98765-4345', '(11) 98765-4346', 'isabela.oliveira@example.com', '', 'Mãe');
 
 INSERT INTO students (responsible_id, schedule_id, health_condition_id, address_id, name, rg, cpf, date_of_birth, main_contact, secondary_contact, email)
 VALUES
@@ -105,7 +105,7 @@ VALUES
     (13, 15, 15, 18, 'Marcos Oliveira', '987654321', '123456789', '2007-03-15', '(11) 98765-4323', '(11) 98765-4324', 'marcos.oliveira@example.com');
 
 INSERT INTO persons (id, address_id, name, rg, cpf, date_of_birth, main_contact, secondary_contact, email)
-VALUES (1, 1, 'José Santos', '987654', '765432', '2000-03-03', '555555', '666666', 'jose.santos@yahoo.com');
+VALUES (1, 1, 'Jose Santos', '987654', '765432', '2000-03-03', '555555', '666666', 'jose.santos@yahoo.com');
 
 INSERT INTO service_providers (id, representative_id, cnpj, corporate_name)
 VALUES (1, 1, '12.345.678/0001-90', 'Empresa A');
