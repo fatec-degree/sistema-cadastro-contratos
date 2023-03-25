@@ -127,17 +127,21 @@
             <input th:field="*{responsibleName}" type="text" class="form-control" id="responsibleName">
           </div>
           <div class="row">
-            <div class="mb-3 col-4">
+            <div class="mb-3 col-3">
               <label class="form-label" for="responsibleRG">RG</label>
               <input th:field="*{responsibleRg}" type="number" class="form-control" id="responsibleRG">
             </div>
-            <div class="mb-3 col-4">
+            <div class="mb-3 col-3">
               <label class="form-label" for="responsibleCPF">CPF</label>
               <input th:field="*{responsibleCpf}" type="number" class="form-control" id="responsibleCPF" placeholder="000.000.000-00">
             </div>
-            <div class="mb-3 col-4">
+            <div class="mb-3 col-3">
               <label class="form-label" for="dateOfBirthResponsible">Data de Nascimento</label>
               <input th:field="*{responsibleDateOfBirth}" type="date" class="form-control" id="dateOfBirthResponsible">
+            </div>
+            <div class="mb-3 col-3">
+              <label class="form-label" for="responsibleRelationship">Parentesco</label>
+              <input th:field="*{responsibleRelationship}" type="text" class="form-control" id="responsibleRelationship">
             </div>
           </div>
           <div class="row">

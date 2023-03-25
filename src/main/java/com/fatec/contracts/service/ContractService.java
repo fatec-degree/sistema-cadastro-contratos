@@ -73,6 +73,7 @@ public class ContractService {
         responsible.setSecondaryContact(contractDto.getResponsibleSecondaryContact());
         responsible.setEmail(contractDto.getResponsibleEmail());
         responsible.setEmergencyContact(contractDto.getResponsibleEmergencyContact());
+        responsible.setRelationship(contractDto.getResponsibleRelationship());
         responsible = responsibleRepository.save(responsible);
 
         Student student = new Student();
