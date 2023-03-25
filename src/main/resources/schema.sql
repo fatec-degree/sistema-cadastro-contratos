@@ -69,7 +69,7 @@ CREATE TABLE IF NOT EXISTS responsibles
     main_contact      VARCHAR(15),
     secondary_contact VARCHAR(15),
     email             VARCHAR(200) UNIQUE,
-    remarks           VARCHAR(500),
+    emergency_contact VARCHAR(500),
 
     FOREIGN KEY (address_id) REFERENCES addresses (id)
 );

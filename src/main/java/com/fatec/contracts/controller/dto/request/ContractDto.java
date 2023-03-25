@@ -44,7 +44,7 @@ public class ContractDto {
     private String responsibleMainContact;
     private String responsibleSecondaryContact;
     private String responsibleEmail;
-    private String responsibleRemarks;
+    private String responsibleEmergencyContact;
     private BigDecimal amount;
     private LocalDate firstParcel;
     private Integer collectionDay;

@@ -70,7 +70,7 @@ VALUES
     ('Problemas de visão', 'Nenhum', 'Óculos', 'Recomendação de fazer exame oftalmológico anualmente'),
     ('Problemas de audição', 'Nenhum', 'Aparelho auditivo', 'Recomendação de fazer exame de audiometria anualmente');
 
-INSERT INTO responsibles (address_id, name, rg, cpf, date_of_birth, main_contact, secondary_contact, email, remarks, relationship)
+INSERT INTO responsibles (address_id, name, rg, cpf, date_of_birth, main_contact, secondary_contact, email, emergency_contact, relationship)
 VALUES
     (6, 'Luciana Santos', '123456789', '987654321', '1985-10-01', '(11) 98765-4321', '(11) 98765-4322', 'luciana.santoss@example.com', '', 'Mãe'),
     (6, 'Ricardo Oliveira', '987654321', '123456789', '1978-05-14', '(11) 98765-4323', '(11) 98765-4324', 'ricardo.oliveira@example.com', '', 'Pai'),
