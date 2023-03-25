@@ -24,6 +24,6 @@ public class HealthCondition {
         return "Doencas: " + sickness + ".\n" +
                "Alergias: " + allergies + ".\n" +
                "Remedios que faz uso: " + medicines + ".\n" +
-               "Observações: " + remarks + "\n.";
+               "Observacoes: " + remarks + "\n.";
     }
 }
