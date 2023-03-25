@@ -21,4 +21,8 @@ public abstract class AbstractPerson {
     @ManyToOne
     private Address address;
 
+    public String getContacts() {
+        return !secondaryContact.isEmpty() ? mainContact + ", " + secondaryContact : mainContact;
+    }
+
 }
