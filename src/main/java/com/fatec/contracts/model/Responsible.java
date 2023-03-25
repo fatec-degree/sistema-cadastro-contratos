@@ -15,5 +15,6 @@ public class Responsible extends AbstractPerson {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String remarks;
+    private String relationship;
 
 }
