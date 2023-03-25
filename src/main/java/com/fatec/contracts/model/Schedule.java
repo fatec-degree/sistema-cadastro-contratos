@@ -21,4 +21,7 @@ public class Schedule {
     @ManyToOne
     private School school;
 
+    public String getCompletePeriod() {
+        return entry + " as " + departure;
+    }
 }
