@@ -1,7 +1,6 @@
 package com.fatec.contracts.controller;
 
 import com.fatec.contracts.controller.dto.response.ContractResponseDto;
-import com.fatec.contracts.repository.projections.ContractProjection;
 import com.fatec.contracts.service.ContractService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
