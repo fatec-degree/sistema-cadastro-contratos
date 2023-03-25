@@ -8,8 +8,11 @@ import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.io.IOException;
 import java.time.LocalDate;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @AllArgsConstructor
 @Service
@@ -23,6 +26,7 @@ public class ContractService {
     private ScheduleRepository scheduleRepository;
     private SchoolRepository schoolRepository;
     private StudentRepository studentRepository;
+    private PDFGenerator pdfGenerator;
 
     @Transactional
     public Contract save(ContractDto contractDto) {
@@ -32,6 +36,7 @@ public class ContractService {
         studentAddress.setStreet(contractDto.getStudentStreet());
         studentAddress.setDistrict(contractDto.getStudentDistrict());
         studentAddress.setCity(contractDto.getStudentCity());
+        studentAddress.setState(contractDto.getStudentState());
         studentAddress = addressRepository.save(studentAddress);
 
         HealthCondition healthCondition = new HealthCondition();
@@ -46,6 +51,7 @@ public class ContractService {
         schoolAddress.setStreet(contractDto.getSchoolStreet());
         schoolAddress.setDistrict(contractDto.getSchoolDistrict());
         schoolAddress.setCity(contractDto.getSchoolCity());
+        schoolAddress.setState(contractDto.getSchoolState());
 
         School school = new School();
         school.setName(contractDto.getSchoolName());
@@ -58,6 +64,7 @@ public class ContractService {
 
         Responsible responsible = new Responsible();
         responsible.setName(contractDto.getResponsibleName());
+        responsible.setRelationship(contractDto.getResponsibleRelationship());
         responsible.setRg(contractDto.getResponsibleRg());
         responsible.setCpf(contractDto.getResponsibleCpf());
         responsible.setDateOfBirth(contractDto.getResponsibleDateOfBirth());
@@ -88,12 +95,74 @@ public class ContractService {
         contract.setStudent(student);
         ServiceProvider serviceProvider = serviceProviderRepository.findById(1L).get();
         contract.setServiceProvider(serviceProvider);
-
-        return contractRepository.save(contract);
+        Contract savedContract = contractRepository.save(contract);
+        savePDFFile(savedContract.getId(), serviceProvider, student, schedule, contract);
+        return savedContract;
     }
 
     public List<ContractProjection> findAll() {
         return contractRepository.findAllContractsForHome();
+    }
+
+    private void savePDFFile(Long contractId, ServiceProvider serviceProvider, Student student, Schedule schedule, Contract contract) {
+        pdfGenerator.setDocument("/home/pedro/Documentos/FATEC/Gestao de Projetos/contracts/src/main/java/com/fatec/contracts/service/CONTRATO-FINAL.pdf");
+        Map<String, String> fieldValues = new HashMap<>();
+        fieldValues.put("Text2", serviceProvider.getCnpj());
+        fieldValues.put("Text3", serviceProvider.getCorporateName());
+        fieldValues.put("Text4", serviceProvider.getRepresentative().getName());
+        fieldValues.put("Text5", serviceProvider.getRepresentative().getRg());
+        fieldValues.put("Text6", serviceProvider.getRepresentative().getCpf());
+        fieldValues.put("Text8", serviceProvider.getRepresentative().getAddress().getCompleteAddress());
+        fieldValues.put("Text9", serviceProvider.getRepresentative().getContacts());
+        fieldValues.put("Text10", student.getName());
+        fieldValues.put("Text11", student.getDateOfBirth().toString());
+        fieldValues.put("Text12", student.getResponsible().getName());
+        fieldValues.put("Text13", student.getResponsible().getRg());
+        fieldValues.put("Text15", student.getResponsible().getCpf());
+        fieldValues.put("Text16", student.getResponsible().getRelationship());
+        fieldValues.put("Text17", student.getAddress().getStreet());
+        fieldValues.put("Text18", student.getAddress().getNumber());
+        fieldValues.put("Text19", student.getAddress().getDistrict());
+        fieldValues.put("Text20", student.getAddress().getCity());
+        fieldValues.put("Text21", student.getAddress().getState());
+        fieldValues.put("Text22", student.getAddress().getZipCode());
+        fieldValues.put("Text23", student.getResponsible().getContacts());
+        fieldValues.put("Text26", student.getHealthCondition().getSickness());
+        fieldValues.put("Text28", student.getHealthCondition().getMedicines());
+        fieldValues.put("Text30", student.getHealthCondition().getAllergies());
+        fieldValues.put("Text31", schedule.getSchool().getName());
+        fieldValues.put("Text32", schedule.getEntry().toString());
+        fieldValues.put("Text33", schedule.getDeparture().toString());
+        fieldValues.put("Text34", contract.getYear().toString());
+        fieldValues.put("Text35", contract.getYear().toString());
+        fieldValues.put("Text36", contract.getAmount().toString());
+        fieldValues.put("Text37", "xxx");
+        fieldValues.put("Text38", "xxx");
+        fieldValues.put("Text39", "xxx");
+        fieldValues.put("Text40", contract.getStart().getDayOfMonth() + "");
+        fieldValues.put("Text41", contract.getStart().getMonth().name());
+        fieldValues.put("Text42", contract.getStart().getYear() + "");
+        fieldValues.put("Text43", student.getName());
+        fieldValues.put("Text44", student.getAddress().getStreet());
+        fieldValues.put("Text45", student.getAddress().getNumber());
+        fieldValues.put("Text46", student.getAddress().getDistrict());
+        fieldValues.put("Text47", student.getAddress().getCity());
+        fieldValues.put("Text48", student.getAddress().getState());
+        fieldValues.put("Text49", student.getAddress().getZipCode());
+        fieldValues.put("Text50", schedule.getSchool().getName());
+        fieldValues.put("Text51", schedule.getCompletePeriod());
+        fieldValues.put("Text52", student.getResponsible().getName());
+        fieldValues.put("Text53", student.getResponsible().getContacts());
+        fieldValues.put("Text54", "xxx");
+        fieldValues.put("Text55", student.getHealthCondition().toString());
+        fieldValues.put("Text56", student.getResponsible().getRemarks());
+        pdfGenerator.fillFields(fieldValues);
+        try {
+            pdfGenerator.saveDocument("contratos/contrato" +  contractId + ".pdf");
+            pdfGenerator.closeDocument();
+        } catch (IOException e) {
+            throw new RuntimeException("Não foi possível gerar o arquivo PDF: " + e);
+        }
     }
 
 }
