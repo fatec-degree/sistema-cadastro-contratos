@@ -50,6 +50,7 @@ public class ContractDto {
     private String schoolDistrict;
     @NotBlank
     private String schoolCity;
+    @NotBlank
     private String schoolState;
     @NotNull
     private LocalTime entryTime;
@@ -63,7 +64,7 @@ public class ContractDto {
     private String responsibleRg;
     @NotBlank
     private String responsibleCpf;
-    @Past
+    @NotNull @Past
     private LocalDate responsibleDateOfBirth;
     @NotBlank
     private String responsibleMainContact;
