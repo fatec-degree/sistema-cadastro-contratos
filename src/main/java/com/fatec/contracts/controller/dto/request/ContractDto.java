@@ -72,6 +72,7 @@ public class ContractDto {
     @NotBlank @Email
     private String responsibleEmail;
     private String responsibleEmergencyContact;
+    private String responsibleRemarks;
     @NotNull @Positive
     private BigDecimal amount;
     @NotNull @FutureOrPresent

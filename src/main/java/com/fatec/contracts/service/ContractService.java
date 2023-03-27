@@ -74,6 +74,7 @@ public class ContractService {
         responsible.setEmail(contractDto.getResponsibleEmail());
         responsible.setEmergencyContact(contractDto.getResponsibleEmergencyContact());
         responsible.setRelationship(contractDto.getResponsibleRelationship());
+        responsible.setRemarks(contractDto.getResponsibleRemarks());
         responsible = responsibleRepository.save(responsible);
 
         Student student = new Student();
@@ -160,7 +161,7 @@ public class ContractService {
         fieldValues.put("Text53", student.getResponsible().getContacts());
         fieldValues.put("Text54", student.getResponsible().getEmergencyContact());
         fieldValues.put("Text55", student.getHealthCondition().toString());
-        fieldValues.put("Text56", "xxx");
+        fieldValues.put("Text56", student.getResponsible().getRemarks());
         pdfGenerator.fillFields(fieldValues);
         try {
             pdfGenerator.saveDocument("contratos/contrato" +  contractId + ".pdf");

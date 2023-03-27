@@ -70,21 +70,21 @@ VALUES
     ('Problemas de visão', 'Nenhum', 'Óculos', 'Recomendação de fazer exame oftalmológico anualmente'),
     ('Problemas de audição', 'Nenhum', 'Aparelho auditivo', 'Recomendação de fazer exame de audiometria anualmente');
 
-INSERT INTO responsibles (address_id, name, rg, cpf, date_of_birth, main_contact, secondary_contact, email, emergency_contact, relationship)
+INSERT INTO responsibles (address_id, name, rg, cpf, date_of_birth, main_contact, secondary_contact, email, emergency_contact, relationship, remarks)
 VALUES
-    (6, 'Luciana Santos', '123456789', '987654321', '1985-10-01', '(11) 98765-4321', '(11) 98765-4322', 'luciana.santoss@example.com', '', 'Mãe'),
-    (6, 'Ricardo Oliveira', '987654321', '123456789', '1978-05-14', '(11) 98765-4323', '(11) 98765-4324', 'ricardo.oliveira@example.com', '', 'Pai'),
-    (6, 'Fernanda Pereira', '654321789', '123456987', '1990-09-22', '(11) 98765-4325', '(11) 98765-4326', 'fernanda.pereira@example.com', '','Mãe'),
-    (7, 'Roberto Silva', '456789321', '987654123', '1982-02-17', '(11) 98765-4327', '(11) 98765-4328', 'roberto.silva@example.com', '', 'Pai'),
-    (8, 'Maria Costa', '159753846', '654789321', '1975-12-30', '(11) 98765-4329', '(11) 98765-4330', 'maria.costa@example.com', '', 'Mãe'),
-    (9, 'Fábio Souza', '753159852', '951753684', '1987-06-05', '(11) 98765-4331', '(11) 98765-4332', 'fabio.souza@example.com', '', 'Pai'),
-    (10, 'Carla Santos', '159753684', '753159852', '1980-03-20', '(11) 98765-4333', '(11) 98765-4334', 'carla.santos@example.com', '', 'Avó'),
-    (11, 'Marcos Ferreira', '456789123', '987654456', '1973-11-11', '(11) 98765-4335', '(11) 98765-4336', 'marcos.ferreira@example.com', '', 'Pai'),
-    (12, 'Aline Silva', '789456321', '321654987', '1995-07-02', '(11) 98765-4337', '(11) 98765-4338', 'aline.silva@example.com', '', 'Mãe'),
-    (13, 'Lucas Almeida', '123456789', '987654321', '1992-03-10', '(11) 98765-4339', '(11) 98765-4340', 'lucas.almeida@example.com', '', 'Pai'),
-    (14, 'Gabriela Lima', '987654321', '123456789', '1989-11-25', '(11) 98765-4341', '(11) 98765-4342', 'gabriela.lima@example.com', '', 'Mãe'),
-    (15, 'Luiz Fernando', '753951846', '159753864', '1984-08-15', '(11) 98765-4343', '(11) 98765-4344', 'luiz.fernando@example.com', '', 'Avô'),
-    (16, 'Isabela Oliveira', '456789123', '987654456', '1998-06-21', '(11) 98765-4345', '(11) 98765-4346', 'isabela.oliveira@example.com', '', 'Mãe');
+    (6, 'Luciana Santos', '123456789', '987654321', '1985-10-01', '(11) 98765-4321', '(11) 98765-4322', 'luciana.santoss@example.com', '', 'Mãe', ''),
+    (6, 'Ricardo Oliveira', '987654321', '123456789', '1978-05-14', '(11) 98765-4323', '(11) 98765-4324', 'ricardo.oliveira@example.com', '', 'Pai', ''),
+    (6, 'Fernanda Pereira', '654321789', '123456987', '1990-09-22', '(11) 98765-4325', '(11) 98765-4326', 'fernanda.pereira@example.com', '','Mãe', ''),
+    (7, 'Roberto Silva', '456789321', '987654123', '1982-02-17', '(11) 98765-4327', '(11) 98765-4328', 'roberto.silva@example.com', '', 'Pai', ''),
+    (8, 'Maria Costa', '159753846', '654789321', '1975-12-30', '(11) 98765-4329', '(11) 98765-4330', 'maria.costa@example.com', '', 'Mãe', ''),
+    (9, 'Fábio Souza', '753159852', '951753684', '1987-06-05', '(11) 98765-4331', '(11) 98765-4332', 'fabio.souza@example.com', '', 'Pai', ''),
+    (10, 'Carla Santos', '159753684', '753159852', '1980-03-20', '(11) 98765-4333', '(11) 98765-4334', 'carla.santos@example.com', '', 'Avó', ''),
+    (11, 'Marcos Ferreira', '456789123', '987654456', '1973-11-11', '(11) 98765-4335', '(11) 98765-4336', 'marcos.ferreira@example.com', '', 'Pai', ''),
+    (12, 'Aline Silva', '789456321', '321654987', '1995-07-02', '(11) 98765-4337', '(11) 98765-4338', 'aline.silva@example.com', '', 'Mãe', ''),
+    (13, 'Lucas Almeida', '123456789', '987654321', '1992-03-10', '(11) 98765-4339', '(11) 98765-4340', 'lucas.almeida@example.com', '', 'Pai', ''),
+    (14, 'Gabriela Lima', '987654321', '123456789', '1989-11-25', '(11) 98765-4341', '(11) 98765-4342', 'gabriela.lima@example.com', '', 'Mãe', ''),
+    (15, 'Luiz Fernando', '753951846', '159753864', '1984-08-15', '(11) 98765-4343', '(11) 98765-4344', 'luiz.fernando@example.com', '', 'Avô', ''),
+    (16, 'Isabela Oliveira', '456789123', '987654456', '1998-06-21', '(11) 98765-4345', '(11) 98765-4346', 'isabela.oliveira@example.com', '', 'Mãe', '');
 
 INSERT INTO students (responsible_id, schedule_id, health_condition_id, address_id, name, rg, cpf, date_of_birth, main_contact, secondary_contact, email)
 VALUES
