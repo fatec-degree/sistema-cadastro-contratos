@@ -6,6 +6,7 @@ import org.apache.pdfbox.pdmodel.interactive.form.PDAcroForm;
 import org.apache.pdfbox.pdmodel.interactive.form.PDTextField;
 import org.springframework.stereotype.Service;
 
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
 import java.util.Map;
@@ -38,12 +39,18 @@ public class PDFGenerator {
         });
     }
 
-    public void saveDocument(String targetPath) throws IOException {
-        document.save(targetPath);
+    public byte[] saveDocument() throws IOException {
+        ByteArrayOutputStream bytes = new ByteArrayOutputStream();
+        document.save(bytes);
+        return bytes.toByteArray();
     }
 
-    public void closeDocument() throws IOException {
-        document.close();
+    public void closeDocument() {
+        try {
+            document.close();
+        } catch (IOException e) {
+            throw new RuntimeException("Não foi possível fechar o documento: " + e);
+        }
     }
 
     public PDDocument getDocument() {

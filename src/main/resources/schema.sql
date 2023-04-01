@@ -121,6 +121,7 @@ CREATE TABLE IF NOT EXISTS contracts
     start               DATE,
     end                 DATE,
     expired             BOOLEAN,
+    file_data           LONGBLOB,
 
     FOREIGN KEY (service_provider_id) REFERENCES service_providers (id),
     FOREIGN KEY (responsible_id) REFERENCES responsibles (id),

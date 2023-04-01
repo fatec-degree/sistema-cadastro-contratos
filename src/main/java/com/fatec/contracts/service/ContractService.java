@@ -101,16 +101,15 @@ public class ContractService {
         contract.setStudent(student);
         ServiceProvider serviceProvider = serviceProviderRepository.findById(1L).get();
         contract.setServiceProvider(serviceProvider);
-        Contract savedContract = contractRepository.save(contract);
-        savePDFFile(savedContract.getId(), serviceProvider, student, schedule, contract);
-        return savedContract;
+        contract.setFileData(savePDFFile(serviceProvider, student, schedule, contract));
+        return contractRepository.save(contract);
     }
 
     public List<ContractProjection> findAll() {
         return contractRepository.findAllContractsForHome();
     }
 
-    private void savePDFFile(Long contractId, ServiceProvider serviceProvider, Student student, Schedule schedule, Contract contract) {
+    private byte[] savePDFFile(ServiceProvider serviceProvider, Student student, Schedule schedule, Contract contract) {
         pdfGenerator.setDocument("/home/pedro/Documentos/FATEC/Gestao de Projetos/contracts/src/main/java/com/fatec/contracts/service/CONTRATO-FINAL.pdf");
         Map<String, String> fieldValues = new HashMap<>();
         fieldValues.put("Text2", serviceProvider.getCnpj());
@@ -164,10 +163,11 @@ public class ContractService {
         fieldValues.put("Text56", student.getResponsible().getRemarks());
         pdfGenerator.fillFields(fieldValues);
         try {
-            pdfGenerator.saveDocument("contratos/contrato" +  contractId + ".pdf");
-            pdfGenerator.closeDocument();
+            return pdfGenerator.saveDocument();
         } catch (IOException e) {
             throw new RuntimeException("Não foi possível gerar o arquivo PDF: " + e);
+        } finally {
+            pdfGenerator.closeDocument();
         }
     }
 
