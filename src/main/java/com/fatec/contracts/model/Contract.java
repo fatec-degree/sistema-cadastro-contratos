@@ -32,5 +32,7 @@ public class Contract {
     private LocalDate start = LocalDate.now();
     private LocalDate end;
     private boolean expired = false;
+    @Lob
+    private byte[] fileData;
 
 }
