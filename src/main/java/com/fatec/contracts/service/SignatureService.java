@@ -1,5 +1,6 @@
 package com.fatec.contracts.service;
 
+import com.fatec.contracts.model.Signer;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -11,6 +12,7 @@ import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
+import java.util.List;
 
 @AllArgsConstructor
 @Service
@@ -21,38 +23,35 @@ public class SignatureService {
     @Value("${d4sign.api.baseUrl}")
     private final String BASE_URL;
 
-    public void createSignatureList(String uuidDocument) {
-        // Em fase de implementação
+    public HttpResponse<String> createSignatureList(String uuidDocument, List<Signer> signers) {
         String signerOne = new SignerBuilder()
-                .email("email")
-                .act(1)
-                .foreign(1)
-                .certificadoIcpBr(0)
-                .assinaturaPresencial(0)
-                .whatsappNumber("11912345678")
+                .email(signers.get(0).getEmail())
+                .act(signers.get(0).getAct())
+                .foreign(signers.get(0).getForeign())
+                .certificadoIcpBr(signers.get(0).getCertificadoIcpBr())
+                .assinaturaPresencial(signers.get(0).getAssinaturaPresencial())
+                .whatsappNumber(signers.get(0).getWhatsappNumber())
                 .build();
         String signerTwo = new SignerBuilder()
-                .email("email")
-                .act(1)
-                .foreign(1)
-                .certificadoIcpBr(0)
-                .assinaturaPresencial(0)
-                .whatsappNumber("11912345678")
+                .email(signers.get(1).getEmail())
+                .act(signers.get(1).getAct())
+                .foreign(signers.get(1).getCertificadoIcpBr())
+                .certificadoIcpBr(signers.get(1).getCertificadoIcpBr())
+                .assinaturaPresencial(signers.get(1).getAssinaturaPresencial())
+                .whatsappNumber(signers.get(1).getWhatsappNumber())
                 .build();
-        HttpRequest.BodyPublisher body = HttpRequest.BodyPublishers.ofString(
-            "{\"signers\":[" + signerOne + ", " + signerTwo + "]}");
-        HttpRequest request = HttpRequest.newBuilder()
-                .uri(URI.create(BASE_URL + "/documents/" + uuidDocument + "/createlist"))
-                .header("accept", "application/json")
-                .header("content-type", "application/json")
-                .POST(body)
-                .build();
-        HttpResponse<String> response;
         try {
-            response = HttpClient.newHttpClient().send(request, HttpResponse.BodyHandlers.ofString());
-            System.out.println(response.body());
-        } catch (IOException | InterruptedException ex) {
-            throw new RuntimeException("Não foi possível solicitar as assinaturas.");
+            HttpRequest.BodyPublisher body = HttpRequest.BodyPublishers.ofString(
+                    "{\"signers\":[" + signerOne + ", " + signerTwo + "]}");
+            HttpRequest request = HttpRequest.newBuilder()
+                    .uri(URI.create(BASE_URL + "/documents/" + uuidDocument + "/createlist"))
+                    .header("accept", "application/json")
+                    .header("content-type", "application/json")
+                    .POST(body)
+                    .build();
+            return HttpClient.newHttpClient().send(request, HttpResponse.BodyHandlers.ofString());
+        } catch (IOException | InterruptedException e) {
+            throw new RuntimeException("Não foi possível solicitar as assinaturas: " + e);
         }
     }
 
