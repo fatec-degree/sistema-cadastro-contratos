@@ -1,7 +1,6 @@
 package com.fatec.contracts.service;
 
 import com.fatec.contracts.model.Signer;
-import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
@@ -14,14 +13,13 @@ import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.util.List;
 
-@AllArgsConstructor
 @Service
 public class SignatureService {
 
     @Value("${d4sign.api.token}")
-    private final String TOKEN_API;
+    private String tokenApi;
     @Value("${d4sign.api.baseUrl}")
-    private final String BASE_URL;
+    private String baseUrl;
 
     public HttpResponse<String> createSignatureList(String uuidDocument, List<Signer> signers) {
         String signerOne = new SignerBuilder()
@@ -44,7 +42,7 @@ public class SignatureService {
             HttpRequest.BodyPublisher body = HttpRequest.BodyPublishers.ofString(
                     "{\"signers\":[" + signerOne + ", " + signerTwo + "]}");
             HttpRequest request = HttpRequest.newBuilder()
-                    .uri(URI.create(BASE_URL + "/documents/" + uuidDocument + "/createlist"))
+                    .uri(URI.create(baseUrl + "/documents/" + uuidDocument + "/createlist"))
                     .header("accept", "application/json")
                     .header("content-type", "application/json")
                     .POST(body)
@@ -59,7 +57,7 @@ public class SignatureService {
         try(InputStream stream = new FileInputStream(pathToFile)) {
             HttpRequest.BodyPublisher body = HttpRequest.BodyPublishers.ofInputStream(() -> stream);
             HttpRequest request = HttpRequest.newBuilder()
-                    .uri(URI.create(BASE_URL + "/documents/" + uuidSafe + "/upload?tokenApi="+ TOKEN_API))
+                    .uri(URI.create(baseUrl + "/documents/" + uuidSafe + "/upload?tokenApi="+ tokenApi))
                     .headers("Content-Type", "multipart/form-data;",
                             "accept", "application/json")
                     .POST(body)
@@ -78,9 +76,9 @@ public class SignatureService {
                     "\"message\": \"" + message + "\"," +
                             "\"skip_email\": \"0\", " +
                             "\"workflow\": \"0\", " +
-                            "\"tokenAPI\": \"" + TOKEN_API + "\"");
+                            "\"tokenAPI\": \"" + tokenApi + "\"");
             HttpRequest request = HttpRequest.newBuilder()
-                    .uri(URI.create(BASE_URL + "/documents/" + uuidDocument + "/sendtosigner"))
+                    .uri(URI.create(baseUrl + "/documents/" + uuidDocument + "/sendtosigner"))
                     .header("Content-Type", "application/json")
                     .POST(body)
                     .build();
