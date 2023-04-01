@@ -4,12 +4,13 @@ import com.fatec.contracts.exceptions.FillFieldOnPDFException;
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.pdmodel.interactive.form.PDAcroForm;
 import org.apache.pdfbox.pdmodel.interactive.form.PDTextField;
+import org.springframework.core.io.Resource;
+import org.springframework.core.io.ResourceLoader;
 import org.springframework.stereotype.Service;
 
 import java.io.ByteArrayOutputStream;
-import java.io.File;
 import java.io.IOException;
-import java.util.HashMap;
+import java.io.InputStream;
 import java.util.Map;
 
 @Service
@@ -17,13 +18,18 @@ public class PDFGenerator {
 
     private PDDocument document;
     private PDAcroForm pdfForm;
+    private final ResourceLoader resourceLoader;
 
+    public PDFGenerator(ResourceLoader resourceLoader) {
+        this.resourceLoader = resourceLoader;
+    }
 
-    public void setDocument(String filePath) {
-        try {
-            this.document = PDDocument.load(new File(filePath));
+    public void loadDocument() {
+        Resource resource = resourceLoader.getResource("classpath:base_contract.pdf");
+        try(InputStream stream = resource.getInputStream()) {
+            this.document = PDDocument.load(stream);
         } catch (IOException e) {
-            throw new IllegalArgumentException("O arquivo " + filePath + " não foi encontrado.");
+            throw new IllegalArgumentException("O arquivo não foi encontrado.");
         }
         this.pdfForm = document.getDocumentCatalog().getAcroForm();
     }

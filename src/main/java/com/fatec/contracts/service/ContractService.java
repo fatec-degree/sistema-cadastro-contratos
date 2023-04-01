@@ -109,7 +109,7 @@ public class ContractService {
     }
 
     private byte[] savePDFFile(ServiceProvider serviceProvider, Student student, Schedule schedule, Contract contract) {
-        pdfGenerator.setDocument("/home/pedro/Documentos/FATEC/Gestao de Projetos/contracts/src/main/java/com/fatec/contracts/service/CONTRATO-FINAL.pdf");
+        pdfGenerator.loadDocument();
         Map<String, String> fieldValues = new HashMap<>();
         fieldValues.put("Text2", serviceProvider.getCnpj());
         fieldValues.put("Text3", serviceProvider.getCorporateName());
