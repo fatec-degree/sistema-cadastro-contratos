@@ -51,7 +51,7 @@ public class SignatureService {
                     .build();
             return HttpClient.newHttpClient().send(request, HttpResponse.BodyHandlers.ofString());
         } catch (IOException | InterruptedException e) {
-            throw new RuntimeException("Não foi possível solicitar as assinaturas: " + e);
+            throw new RuntimeException("Não foi possível adicionar os signatários: " + e);
         }
     }
 
@@ -69,6 +69,24 @@ public class SignatureService {
             throw new RuntimeException("Não foi possível carregar o arquivo " + pathToFile + ": " + e);
         } catch (InterruptedException e) {
             throw new RuntimeException("Não foi possível realizar o upload do documento: " + e);
+        }
+    }
+
+    public HttpResponse<String> sendToSigners(String uuidDocument, String message) {
+        try {
+            HttpRequest.BodyPublisher body = HttpRequest.BodyPublishers.ofString(
+                    "\"message\": \"" + message + "\"," +
+                            "\"skip_email\": \"0\", " +
+                            "\"workflow\": \"0\", " +
+                            "\"tokenAPI\": \"" + TOKEN_API + "\"");
+            HttpRequest request = HttpRequest.newBuilder()
+                    .uri(URI.create(BASE_URL + "/documents/" + uuidDocument + "/sendtosigner"))
+                    .header("Content-Type", "application/json")
+                    .POST(body)
+                    .build();
+            return HttpClient.newHttpClient().send(request,  HttpResponse.BodyHandlers.ofString());
+        } catch (IOException | InterruptedException e) {
+            throw new RuntimeException("Não foi possível solicitar as assinaturas para o documento: " + e);
         }
     }
 
