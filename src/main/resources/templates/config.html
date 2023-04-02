@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head th:replace="~{ base :: head('Configurações')}"></head>
+    <body>
+        <div th:replace="~{ base :: header }"></div>
+        <div class="container" style="margin-bottom: 5em">
+            <div th:replace="~{base :: titleOutdoor('Configurações')}"></div>
+            <form method="post" th:action="@{/config/new}" th:object="${configRequestDto}">
+                <div>
+                    <h3 class="mb-3">Dados da Empresa</h3>
+                    <div class="row">
+                        <div class="mb-3 col-6">
+                            <label for="cnpj">CNPJ</label>
+                            <input th:field="*{cnpj}" type="number" class="form-control" id="cnpj">
+                        </div>
+                        <div class="mb-3 col-6">
+                            <label for="corporateName">Nome</label>
+                            <input th:field="*{corporateName}" type="text" class="form-control" id="corporateName">
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <h3 class="mb-3">Dados do Representante</h3>
+                    <div class="mb-3">
+                        <label for="representativeName">Nome</label>
+                        <input th:field="*{representativeName}" type="text" class="form-control" id="representativeName">
+                    </div>
+                    <div class="row">
+                        <div class="mb-3 col-4">
+                            <label for="representativeRg">RG</label>
+                            <input th:field="*{representativeRg}" type="number" class="form-control" id="representativeRg">
+                        </div>
+                        <div class="mb-3 col-4">
+                            <label for="representativeCpf">CPF</label>
+                            <input th:field="*{representativeCpf}" type="number" class="form-control" id="representativeCpf">
+                        </div>
+                        <div class="mb-3 col-4">
+                            <label for="representativeDateOfBirth">Data de Nascimento</label>
+                            <input th:field="*{representativeDateOfBirth}" type="date" class="form-control" id="representativeDateOfBirth">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="mb-3 col-4">
+                            <label for="representativeMainContact">Contato Principal</label>
+                            <input th:field="*{representativeMainContact}" type="number" class="form-control" id="representativeMainContact">
+                        </div>
+                        <div class="mb-3 col-4">
+                            <label for="representativeSecondaryContact">Contato Secundário</label>
+                            <input th:field="*{representativeSecondaryContact}" type="number" class="form-control" id="representativeSecondaryContact">
+                        </div>
+                        <div class="mb-3 col-4">
+                            <label for="representativeEmail">E-mail</label>
+                            <input th:field="*{representativeEmail}" type="email" class="form-control" id="representativeEmail">
+                        </div>
+                    </div>
+                    <div>
+                        <h3 class="mb-3">Endereço do Representante</h3>
+                        <div class="mb-3">
+                            <label for="representativeZipCode">CEP</label>
+                            <input th:field="*{representativeZipCode}" type="number" class="form-control" id="representativeZipCode" placeholder="00000-000">
+                        </div>
+                        <div class="row">
+                            <div class="mb-3 col-8">
+                                <label for="representativeStreet">Logradouro</label>
+                                <input th:field="*{representativeStreet}" type="text" class="form-control" id="representativeStreet">
+                            </div>
+                            <div class="mb-3 col-4">
+                                <label for="representativeHouseNumber">Número</label>
+                                <input th:field="*{representativeHouseNumber}" type="number" class="form-control" id="representativeHouseNumber">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="mb-3 col-4">
+                                <label for="representativeDistrict">Bairro</label>
+                                <input th:field="*{representativeDistrict}" type="text" class="form-control" id="representativeDistrict">
+                            </div>
+                            <div class="mb-3 col-4">
+                                <label for="city">Cidade</label>
+                                <input th:field="*{representativeCity}" type="text" class="form-control" id="city">
+                            </div>
+                            <div class="mb-3 col-4">
+                                <label for="representativeState">Estado</label>
+                                <select th:field="*{representativeState}" th:errorclass="is-invalid" class="form-select" id="representativeState">
+                                    <option value="Sao Paulo">São Paulo</option>
+                                    <option value="Acre">Acre</option>
+                                    <option value="Alagoas">Alagoas</option>
+                                    <option value="Amapa">Amapá</option>
+                                    <option value="Amazonas">Amazonas</option>
+                                    <option value="Bahia">Bahia</option>
+                                    <option value="Ceara">Ceará</option>
+                                    <option value="Distrito Federal">Distrito Federal</option>
+                                    <option value="Espirito Santo">Espírito Santo</option>
+                                    <option value="Goias">Goiás</option>
+                                    <option value="Maranhao">Maranhão</option>
+                                    <option value="Mato Grosso">Mato Grosso</option>
+                                    <option value="Mato Grosso do Sul">Mato Grosso do Sul</option>
+                                    <option value="Minas Gerais">Minas Gerais</option>
+                                    <option value="Para">Pará</option>
+                                    <option value="Paraiba">Paraíba</option>
+                                    <option value="Parana">Paraná</option>
+                                    <option value="Pernambuco">Pernambuco</option>
+                                    <option value="Piaui">Piauí</option>
+                                    <option value="Rio de Janeiro">Rio de Janeiro</option>
+                                    <option value="Rio Grande do Norte">Rio Grande do Norte</option>
+                                    <option value="RioGrande do Sul">Rio Grande do Sul</option>
+                                    <option value="Rondonia">Rondônia</option>
+                                    <option value="Roraima">Roraima</option>
+                                    <option value="Santa Catarina">Santa Catarina</option>
+                                    <option value="Sergipe">Sergipe</option>
+                                    <option value="Tocantins">Tocantins</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <button class="btn btn-success btn-lg float-end" style="align-self: flex-end" type="submit">Salvar</button>
+            </form>
+        </div>
+    </body>
+</html>
