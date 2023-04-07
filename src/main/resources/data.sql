@@ -72,19 +72,19 @@ VALUES
 
 INSERT INTO responsibles (address_id, name, rg, cpf, date_of_birth, main_contact, secondary_contact, email, emergency_contact, relationship, remarks)
 VALUES
-    (6, 'Luciana Santos', '123456789', '987654321', '1985-10-01', '11987654321', '11987654322', 'luciana.santoss@example.com', '', 'Mae'),
-    (6, 'Ricardo Oliveira', '987654321', '123456789', '1978-05-14', '11987654323', '11987654324', 'ricardo.oliveira@example.com', '', 'Pai'),
-    (6, 'Fernanda Pereira', '654321789', '123456987', '1990-09-22', '11987654325', '11987654326', 'fernanda.pereira@example.com', '','Mae'),
-    (7, 'Roberto Silva', '456789321', '987654123', '1982-02-17', '11987654327', '11987654328', 'roberto.silva@example.com', '', 'Pai'),
-    (8, 'Maria Costa', '159753846', '654789321', '1975-12-30', '11987654329', '11987654330', 'maria.costa@example.com', '', 'Mae'),
-    (9, 'Fabio Souza', '753159852', '951753684', '1987-06-05', '11987654331', '11987654332', 'fabio.souza@example.com', '', 'Pai'),
-    (10, 'Carla Santos', '159753684', '753159852', '1980-03-20', '11987654333', '11987654334', 'carla.santos@example.com', '', 'Avo'),
-    (11, 'Marcos Ferreira', '456789123', '987654456', '1973-11-11', '11987654335', '11987654336', 'marcos.ferreira@example.com', '', 'Pai'),
-    (12, 'Aline Silva', '789456321', '321654987', '1995-07-02', '11987654337', '11987654338', 'aline.silva@example.com', '', 'Mae'),
-    (13, 'Lucas Almeida', '123456789', '987654321', '1992-03-10', '11987654339', '11987654340', 'lucas.almeida@example.com', '', 'Pai'),
-    (14, 'Gabriela Lima', '987654321', '123456789', '1989-11-25', '11987654341', '11987654342', 'gabriela.lima@example.com', '', 'Mae'),
-    (15, 'Luiz Fernando', '753951846', '159753864', '1984-08-15', '11987654343', '11987654344', 'luiz.fernando@example.com', '', 'Avô'),
-    (16, 'Isabela Oliveira', '456789123', '987654456', '1998-06-21', '11987654345', '11987654346', 'isabela.oliveira@example.com', '', 'Mae');
+    (6, 'Luciana Santos', '123456789', '987654321', '1985-10-01', '11987654321', '11987654322', 'luciana.santoss@example.com', '', 'Mae', ''),
+    (6, 'Ricardo Oliveira', '987654321', '123456789', '1978-05-14', '11987654323', '11987654324', 'ricardo.oliveira@example.com', '', 'Pai', ''),
+    (6, 'Fernanda Pereira', '654321789', '123456987', '1990-09-22', '11987654325', '11987654326', 'fernanda.pereira@example.com', '','Mae', ''),
+    (7, 'Roberto Silva', '456789321', '987654123', '1982-02-17', '11987654327', '11987654328', 'roberto.silva@example.com', '', 'Pai', ''),
+    (8, 'Maria Costa', '159753846', '654789321', '1975-12-30', '11987654329', '11987654330', 'maria.costa@example.com', '', 'Mae', ''),
+    (9, 'Fabio Souza', '753159852', '951753684', '1987-06-05', '11987654331', '11987654332', 'fabio.souza@example.com', '', 'Pai', ''),
+    (10, 'Carla Santos', '159753684', '753159852', '1980-03-20', '11987654333', '11987654334', 'carla.santos@example.com', '', 'Avo', ''),
+    (11, 'Marcos Ferreira', '456789123', '987654456', '1973-11-11', '11987654335', '11987654336', 'marcos.ferreira@example.com', '', 'Pai', ''),
+    (12, 'Aline Silva', '789456321', '321654987', '1995-07-02', '11987654337', '11987654338', 'aline.silva@example.com', '', 'Mae', ''),
+    (13, 'Lucas Almeida', '123456789', '987654321', '1992-03-10', '11987654339', '11987654340', 'lucas.almeida@example.com', '', 'Pai', ''),
+    (14, 'Gabriela Lima', '987654321', '123456789', '1989-11-25', '11987654341', '11987654342', 'gabriela.lima@example.com', '', 'Mae', ''),
+    (15, 'Luiz Fernando', '753951846', '159753864', '1984-08-15', '11987654343', '11987654344', 'luiz.fernando@example.com', '', 'Avô', ''),
+    (16, 'Isabela Oliveira', '456789123', '987654456', '1998-06-21', '11987654345', '11987654346', 'isabela.oliveira@example.com', '', 'Mae', '');
 
 INSERT INTO students (responsible_id, schedule_id, health_condition_id, address_id, name, rg, cpf, date_of_birth, main_contact, secondary_contact, email)
 VALUES

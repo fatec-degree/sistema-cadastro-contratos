@@ -16,7 +16,7 @@ public class ServiceProvider {
     private Long id;
     private String cnpj;
     private String corporateName;
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     private Person representative;
 
 }

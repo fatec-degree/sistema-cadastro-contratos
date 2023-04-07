@@ -1,5 +1,6 @@
 package com.fatec.contracts.model;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.MappedSuperclass;
 import lombok.Getter;
@@ -18,7 +19,7 @@ public abstract class AbstractPerson {
     private String mainContact;
     private String secondaryContact;
     private String email;
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     private Address address;
 
     public String getContacts() {
