@@ -70,6 +70,7 @@ CREATE TABLE IF NOT EXISTS responsibles
     secondary_contact VARCHAR(15),
     email             VARCHAR(200) UNIQUE,
     emergency_contact VARCHAR(500),
+    remarks           VARCHAR(500),
 
     FOREIGN KEY (address_id) REFERENCES addresses (id)
 );

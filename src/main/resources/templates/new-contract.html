@@ -10,20 +10,24 @@
           <h3 class="mb-3">Dados do Aluno</h3>
           <div class="mb-3">
             <label for="studentName">Nome</label>
-            <input th:field="*{studentName}" type="text" class="form-control" id="studentName">
+            <input th:field="*{studentName}" th:errorclass="is-invalid" type="text" class="form-control" id="studentName">
+            <div th:errors="*{studentName}" class="invalid-feedback"></div>
           </div>
           <div class="row">
             <div class="mb-3 col-4">
               <label class="form-label" for="studentRG">RG</label>
-              <input th:field="*{studentRg}" type="number" class="form-control" id="studentRG">
+              <input th:field="*{studentRg}" th:errorclass="is-invalid" type="number" class="form-control" id="studentRG">
+              <div th:errors="*{studentRg}" class="invalid-feedback"></div>
             </div>
             <div class="mb-3 col-4">
               <label class="form-label" for="studentCPF">CPF</label>
-              <input th:field="*{studentCpf}" type="number" class="form-control" id="studentCPF" placeholder="000.000.000-00">
+              <input th:field="*{studentCpf}" th:errorclass="is-invalid" type="number" class="form-control" id="studentCPF" placeholder="000.000.000-00">
+              <div th:errors="*{studentCpf}" class="invalid-feedback"></div>
             </div>
             <div class="mb-3 col-4">
               <label class="form-label" for="dateOfBirthStudent">Data de Nascimento</label>
-              <input th:field="*{studentDateOfBirth}" type="date" class="form-control" id="dateOfBirthStudent">
+              <input th:field="*{studentDateOfBirth}" th:errorclass="is-invalid" type="date" class="form-control" id="dateOfBirthStudent">
+              <div th:errors="*{studentDateOfBirth}" class="invalid-feedback"></div>
             </div>
           </div>
         </div>
@@ -31,26 +35,64 @@
           <h3 class="mb-3">Endereço do Aluno</h3>
           <div class="mb-3">
             <label for="zipCode">CEP</label>
-            <input th:field="*{studentZipCode}" type="number" class="form-control" id="zipCode" placeholder="00000-000">
+            <input th:field="*{studentZipCode}" th:errorclass="is-invalid" type="number" class="form-control" id="zipCode" placeholder="00000-000">
+            <div th:errors="*{studentZipCode}" class="invalid-feedback"></div>
           </div>
           <div class="row">
             <div class="mb-3 col-8">
               <label for="street">Logradouro</label>
-              <input th:field="*{studentStreet}" type="text" class="form-control" id="street">
+              <input th:field="*{studentStreet}" th:errorclass="is-invalid" type="text" class="form-control" id="street">
+              <div th:errors="*{studentStreet}" class="invalid-feedback"></div>
             </div>
             <div class="mb-3 col-4">
               <label for="houseNumber">Número</label>
-              <input th:field="*{studentHouseNumber}" type="number" class="form-control" id="houseNumber">
+              <input th:field="*{studentHouseNumber}" th:errorclass="is-invalid" type="number" class="form-control" id="houseNumber">
+              <div th:errors="*{studentHouseNumber}" class="invalid-feedback"></div>
             </div>
           </div>
           <div class="row">
-            <div class="mb-3 col-6">
+            <div class="mb-3 col-4">
               <label for="district">Bairro</label>
-              <input th:field="*{studentDistrict}" type="text" class="form-control" id="district">
+              <input th:field="*{studentDistrict}" th:errorclass="is-invalid" type="text" class="form-control" id="district">
+              <div th:errors="*{studentDistrict}" class="invalid-feedback"></div>
             </div>
-            <div class="mb-3 col-6">
+            <div class="mb-3 col-4">
               <label for="city">Cidade</label>
-              <input th:field="*{studentCity}" type="text" class="form-control" id="city">
+              <input th:field="*{studentCity}" th:errorclass="is-invalid" type="text" class="form-control" id="city">
+              <div th:errors="*{studentCity}" class="invalid-feedback"></div>
+            </div>
+            <div class="mb-3 col-4">
+              <label for="stateStudent">Estado</label>
+              <select th:field="*{studentState}" th:errorclass="is-invalid" class="form-select" id="stateStudent">
+                <option value="Sao Paulo">São Paulo</option>
+                <option value="Acre">Acre</option>
+                <option value="Alagoas">Alagoas</option>
+                <option value="Amapa">Amapá</option>
+                <option value="Amazonas">Amazonas</option>
+                <option value="Bahia">Bahia</option>
+                <option value="Ceara">Ceará</option>
+                <option value="Distrito Federal">Distrito Federal</option>
+                <option value="Espirito Santo">Espírito Santo</option>
+                <option value="Goias">Goiás</option>
+                <option value="Maranhao">Maranhão</option>
+                <option value="Mato Grosso">Mato Grosso</option>
+                <option value="Mato Grosso do Sul">Mato Grosso do Sul</option>
+                <option value="Minas Gerais">Minas Gerais</option>
+                <option value="Para">Pará</option>
+                <option value="Paraiba">Paraíba</option>
+                <option value="Parana">Paraná</option>
+                <option value="Pernambuco">Pernambuco</option>
+                <option value="Piaui">Piauí</option>
+                <option value="Rio de Janeiro">Rio de Janeiro</option>
+                <option value="Rio Grande do Norte">Rio Grande do Norte</option>
+                <option value="RioGrande do Sul">Rio Grande do Sul</option>
+                <option value="Rondonia">Rondônia</option>
+                <option value="Roraima">Roraima</option>
+                <option value="Santa Catarina">Santa Catarina</option>
+                <option value="Sergipe">Sergipe</option>
+                <option value="Tocantins">Tocantins</option>
+              </select>
+              <div th:errors="*{studentState}" class="invalid-feedback"></div>
             </div>
           </div>
         </div>
@@ -82,41 +124,82 @@
           <div class="row">
             <div class="mb-3 col-8">
               <label for="schoolName">Nome</label>
-              <input th:field="*{schoolName}" type="text" class="form-control" id="schoolName">
+              <input th:field="*{schoolName}" th:errorclass="is-invalid" type="text" class="form-control" id="schoolName">
+              <div th:errors="*{schoolName}" class="invalid-feedback"></div>
             </div>
             <div class="mb-3 col-4">
               <label for="zipCodeSchool">CEP</label>
-              <input th:field="*{schoolZipCode}" type="number" class="form-control" id="zipCodeSchool" placeholder="00000-000">
+              <input th:field="*{schoolZipCode}" th:errorclass="is-invalid" type="number" class="form-control" id="zipCodeSchool" placeholder="00000-000">
+              <div th:errors="*{schoolZipCode}" class="invalid-feedback"></div>
             </div>
           </div>
           <div class="row">
-            <div class="mb-3 col-9">
+            <div class="mb-3 col-8">
               <label for="streetSchool">Logradouro</label>
-              <input th:field="*{schoolStreet}" type="text" class="form-control" id="streetSchool">
+              <input th:field="*{schoolStreet}" th:errorclass="is-invalid" type="text" class="form-control" id="streetSchool">
+              <div th:errors="*{schoolStreet}" class="invalid-feedback"></div>
             </div>
-            <div class="mb-3 col-3">
+            <div class="mb-3 col-4">
               <label for="schoolNumber">Número</label>
-              <input th:field="*{schoolNumber}" type="number" class="form-control" id="schoolNumber">
+              <input th:field="*{schoolNumber}" th:errorclass="is-invalid" type="number" class="form-control" id="schoolNumber">
+              <div th:errors="*{schoolNumber}" class="invalid-feedback"></div>
             </div>
           </div>
           <div class="row">
-            <div class="mb-3 col-6">
+            <div class="mb-3 col-4">
               <label for="schoolDistrict">Bairro</label>
-              <input th:field="*{schoolDistrict}" type="text" class="form-control" id="schoolDistrict">
+              <input th:field="*{schoolDistrict}" th:errorclass="is-invalid" type="text" class="form-control" id="schoolDistrict">
+              <div th:errors="*{schoolDistrict}" class="invalid-feedback"></div>
             </div>
-            <div class="mb-3 col-6">
+            <div class="mb-3 col-4">
               <label for="schoolCity">Cidade</label>
-              <input th:field="*{schoolCity}" type="text" class="form-control" id="schoolCity">
+              <input th:field="*{schoolCity}" th:errorclass="is-invalid" type="text" class="form-control" id="schoolCity">
+              <div th:errors="*{schoolCity}" class="invalid-feedback"></div>
+            </div>
+            <div class="mb-3 col-4">
+              <label for="schoolState">Estado</label>
+              <select th:field="*{schoolState}" th:errorclass="is-invalid" class="form-select" id="schoolState">
+              <option value="Sao Paulo">São Paulo</option>
+              <option value="Acre">Acre</option>
+              <option value="Alagoas">Alagoas</option>
+              <option value="Amapa">Amapá</option>
+              <option value="Amazonas">Amazonas</option>
+              <option value="Bahia">Bahia</option>
+              <option value="Ceara">Ceará</option>
+              <option value="Distrito Federal">Distrito Federal</option>
+              <option value="Espirito Santo">Espírito Santo</option>
+              <option value="Goias">Goiás</option>
+              <option value="Maranhao">Maranhão</option>
+              <option value="Mato Grosso">Mato Grosso</option>
+              <option value="Mato Grosso do Sul">Mato Grosso do Sul</option>
+              <option value="Minas Gerais">Minas Gerais</option>
+              <option value="Para">Pará</option>
+              <option value="Paraiba">Paraíba</option>
+              <option value="Parana">Paraná</option>
+              <option value="Pernambuco">Pernambuco</option>
+              <option value="Piaui">Piauí</option>
+              <option value="Rio de Janeiro">Rio de Janeiro</option>
+              <option value="Rio Grande do Norte">Rio Grande do Norte</option>
+              <option value="RioGrande do Sul">Rio Grande do Sul</option>
+              <option value="Rondonia">Rondônia</option>
+              <option value="Roraima">Roraima</option>
+              <option value="Santa Catarina">Santa Catarina</option>
+              <option value="Sergipe">Sergipe</option>
+              <option value="Tocantins">Tocantins</option>
+            </select>
+              <div th:errors="*{schoolState}" class="invalid-feedback"></div>
             </div>
           </div>
           <div class="row">
             <div class="mb-3 col-6">
               <label for="entryTime">Entrada</label>
-              <input th:field="*{entryTime}" type="time" class="form-control" id="entryTime">
+              <input th:field="*{entryTime}" th:errorclass="is-invalid" type="time" min="06:00" max="19:00" class="form-control" id="entryTime">
+              <div th:errors="*{entryTime}" class="invalid-feedback"></div>
             </div>
             <div class="mb-3 col-6">
               <label for="departureTime">Saída</label>
-              <input th:field="*{departureTime}" type="time" class="form-control" id="departureTime">
+              <input th:field="*{departureTime}" th:errorclass="is-invalid" type="time" class="form-control" id="departureTime">
+              <div th:errors="*{departureTime}" class="invalid-feedback"></div>
             </div>
           </div>
         </div>
@@ -124,30 +207,36 @@
           <h3 class="mb-3">Dados do Responsável</h3>
           <div class="mb-3">
             <label for="responsibleName">Nome</label>
-            <input th:field="*{responsibleName}" type="text" class="form-control" id="responsibleName">
+            <input th:field="*{responsibleName}" th:errorclass="is-invalid" type="text" class="form-control" id="responsibleName">
+            <div th:errors="*{responsibleName}" class="invalid-feedback"></div>
           </div>
           <div class="row">
             <div class="mb-3 col-3">
               <label class="form-label" for="responsibleRG">RG</label>
-              <input th:field="*{responsibleRg}" type="number" class="form-control" id="responsibleRG">
+              <input th:field="*{responsibleRg}" th:errorclass="is-invalid" type="number" class="form-control" id="responsibleRG">
+              <div th:errors="*{responsibleRg}" class="invalid-feedback"></div>
             </div>
             <div class="mb-3 col-3">
               <label class="form-label" for="responsibleCPF">CPF</label>
-              <input th:field="*{responsibleCpf}" type="number" class="form-control" id="responsibleCPF" placeholder="000.000.000-00">
+              <input th:field="*{responsibleCpf}" th:errorclass="is-invalid" type="number" class="form-control" id="responsibleCPF" placeholder="000.000.000-00">
+              <div th:errors="*{responsibleCpf}" class="invalid-feedback"></div>
             </div>
             <div class="mb-3 col-3">
               <label class="form-label" for="dateOfBirthResponsible">Data de Nascimento</label>
-              <input th:field="*{responsibleDateOfBirth}" type="date" class="form-control" id="dateOfBirthResponsible">
+              <input th:field="*{responsibleDateOfBirth}" th:errorclass="is-invalid" type="date" class="form-control" id="dateOfBirthResponsible">
+              <div th:errors="*{responsibleDateOfBirth}" class="invalid-feedback"></div>
             </div>
             <div class="mb-3 col-3">
               <label class="form-label" for="responsibleRelationship">Parentesco</label>
-              <input th:field="*{responsibleRelationship}" type="text" class="form-control" id="responsibleRelationship">
+              <input th:field="*{responsibleRelationship}" th:errorclass="is-invalid" type="text" class="form-control" id="responsibleRelationship">
+              <div th:errors="*{responsibleRelationship}" class="invalid-feedback"></div>
             </div>
           </div>
           <div class="row">
             <div class="mb-3 col-4">
               <label class="form-label" for="responsibleMainPhoneNumber">Contato Principal</label>
-              <input th:field="*{responsibleMainContact}" type="number" class="form-control" id="responsibleMainPhoneNumber" placeholder="(00) 00000-0000">
+              <input th:field="*{responsibleMainContact}" th:errorclass="is-invalid" type="number" class="form-control" id="responsibleMainPhoneNumber" placeholder="(00) 00000-0000">
+              <div th:errors="*{responsibleMainContact}" class="invalid-feedback"></div>
             </div>
             <div class="mb-3 col-4">
               <label class="form-label" for="responsibleSecondaryPhoneNumber">Contato Secundário</label>
@@ -155,12 +244,17 @@
             </div>
             <div class="mb-3 col-4">
               <label class="form-label" for="responsibleEmail">E-mail</label>
-              <input th:field="*{responsibleEmail}" type="email" class="form-control" id="responsibleEmail" placeholder="email@email.com">
+              <input th:field="*{responsibleEmail}" th:errorclass="is-invalid" type="email" class="form-control" id="responsibleEmail" placeholder="email@email.com">
+              <div th:errors="*{responsibleEmail}" class="invalid-feedback"></div>
             </div>
           </div>
           <div class="mb-3">
             <label class="form-label" for="responsibleEmergencyContact">Em caso de urgência contatar:</label>
             <textarea th:field="*{responsibleEmergencyContact}" class="form-control" id="responsibleEmergencyContact" placeholder="Dê o máximo de detalhes possíveis"></textarea>
+          </div>
+          <div class="mb-3">
+            <label class="form-label" for="responsibleRemarks">Observações:</label>
+            <textarea th:field="*{responsibleRemarks}" class="form-control" id="responsibleRemarks" placeholder="Observações gerais"></textarea>
           </div>
         </div>
         <div>
@@ -168,29 +262,35 @@
           <div class="row">
             <div class="mb-3 col-4">
               <label for="annualAmount">Valor Anual</label>
-              <input th:field="*{amount}" type="number" class="form-control" id="annualAmount">
+              <input th:field="*{amount}" th:errorclass="is-invalid" type="number" class="form-control" id="annualAmount">
+              <div th:errors="*{amount}" class="invalid-feedback"></div>
             </div>
             <div class="mb-3 col-4">
               <label for="numberOfParcels">Número de Parcelas</label>
-              <input th:field="*{numberOfParcels}" type="number" class="form-control" id="numberOfParcels">
+              <input th:field="*{numberOfParcels}" th:errorclass="is-invalid" type="number" class="form-control" id="numberOfParcels">
+              <div th:errors="*{numberOfParcels}" class="invalid-feedback"></div>
             </div>
             <div class="mb-3 col-4">
               <label for="parcelValue">Valor da Parcela</label>
-              <input th:field="*{parcelValue}" type="number" class="form-control" id="parcelValue">
+              <input th:field="*{parcelValue}" th:errorclass="is-invalid" type="number" class="form-control" id="parcelValue">
+              <div th:errors="*{parcelValue}" class="invalid-feedback"></div>
             </div>
           </div>
           <div class="row">
             <div class="mb-3 col-4">
               <label for="year">Referente ao ano</label>
-              <input th:field="*{year}" type="number" class="form-control" id="year">
+              <input th:field="*{year}" th:errorclass="is-invalid" type="number" class="form-control" id="year">
+              <div th:errors="*{year}" class="invalid-feedback"></div>
             </div>
             <div class="mb-3 col-4">
               <label for="firstParcel">Primeira Parcela</label>
-              <input th:field="*{firstParcel}" type="date" class="form-control" id="firstParcel">
+              <input th:field="*{firstParcel}" th:errorclass="is-invalid" type="date" class="form-control" id="firstParcel">
+              <div th:errors="*{firstParcel}" class="invalid-feedback"></div>
             </div>
             <div class="mb-3 col-4">
               <label for="collectionDay">Dia de Pagamento</label>
-              <input th:field="*{collectionDay}" type="number" class="form-control" id="collectionDay">
+              <input th:field="*{collectionDay}" th:errorclass="is-invalid" type="number" class="form-control" id="collectionDay">
+              <div th:errors="*{collectionDay}" class="invalid-feedback"></div>
             </div>
           </div>
         </div>
