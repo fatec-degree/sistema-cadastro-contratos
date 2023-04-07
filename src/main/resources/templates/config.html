@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head th:replace="~{ base :: head('Configurações')}"></head>
+    <body>
+        <div th:replace="~{ base :: header }"></div>
+        <div class="container" style="margin-bottom: 5em">
+            <div th:replace="~{base :: titleOutdoor('Configurações')}"></div>
+            <form method="post" th:action="@{/config/new}" th:object="${configRequestDto}">
+                <input th:name="id" th:value="${serviceProvider.id}" type="hidden">
+                <input th:name="representativeId" th:value="${serviceProvider.representativeId}" type="hidden">
+                <input th:name="representativeAddressId" th:value="${serviceProvider.representativeAddressId}" type="hidden">
+                <div>
+                    <h3 class="mb-3">Dados da Empresa</h3>
+                    <div class="row">
+                        <div class="mb-3 col-6">
+                            <label for="cnpj">CNPJ</label>
+                            <input th:name="cnpj" th:value="${serviceProvider.cnpj}" type="number" class="form-control" id="cnpj">
+                        </div>
+                        <div class="mb-3 col-6">
+                            <label for="corporateName">Nome</label>
+                            <input th:name="corporateName" th:value="${serviceProvider.corporateName}" type="text" class="form-control" id="corporateName">
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <h3 class="mb-3">Dados do Representante</h3>
+                    <div class="mb-3">
+                        <label for="representativeName">Nome</label>
+                        <input th:name="representativeName" th:value="${serviceProvider.representativeName}" type="text" class="form-control" id="representativeName">
+                    </div>
+                    <div class="row">
+                        <div class="mb-3 col-4">
+                            <label for="representativeRg">RG</label>
+                            <input th:name="representativeRg" th:value="${serviceProvider.representativeRg}" type="number" class="form-control" id="representativeRg">
+                        </div>
+                        <div class="mb-3 col-4">
+                            <label for="representativeCpf">CPF</label>
+                            <input th:name="representativeCpf" th:value="${serviceProvider.representativeCpf}" type="number" class="form-control" id="representativeCpf">
+                        </div>
+                        <div class="mb-3 col-4">
+                            <label for="representativeDateOfBirth">Data de Nascimento</label>
+                            <input th:name="representativeDateOfBirth" th:value="${serviceProvider.representativeDateOfBirth}" type="date" class="form-control" id="representativeDateOfBirth">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="mb-3 col-4">
+                            <label for="representativeMainContact">Contato Principal</label>
+                            <input th:name="representativeMainContact" th:value="${serviceProvider.representativeMainContact}" type="number" class="form-control" id="representativeMainContact">
+                        </div>
+                        <div class="mb-3 col-4">
+                            <label for="representativeSecondaryContact">Contato Secundário</label>
+                            <input th:name="representativeSecondaryContact" th:value="${serviceProvider.representativeSecondaryContact}" type="number" class="form-control" id="representativeSecondaryContact">
+                        </div>
+                        <div class="mb-3 col-4">
+                            <label for="representativeEmail">E-mail</label>
+                            <input th:name="representativeEmail" th:value="${serviceProvider.representativeEmail}" type="email" class="form-control" id="representativeEmail">
+                        </div>
+                    </div>
+                    <div>
+                        <h3 class="mb-3">Endereço do Representante</h3>
+                        <div class="mb-3">
+                            <label for="representativeZipCode">CEP</label>
+                            <input th:name="representativeZipCode" th:value="${serviceProvider.representativeZipCode}" type="number" class="form-control" id="representativeZipCode" placeholder="00000-000">
+                        </div>
+                        <div class="row">
+                            <div class="mb-3 col-8">
+                                <label for="representativeStreet">Logradouro</label>
+                                <input th:name="representativeStreet" th:value="${serviceProvider.representativeStreet}" type="text" class="form-control" id="representativeStreet">
+                            </div>
+                            <div class="mb-3 col-4">
+                                <label for="representativeHouseNumber">Número</label>
+                                <input th:name="representativeHouseNumber" th:value="${serviceProvider.representativeHouseNumber}" type="number" class="form-control" id="representativeHouseNumber">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="mb-3 col-4">
+                                <label for="representativeDistrict">Bairro</label>
+                                <input th:name="representativeDistrict" th:value="${serviceProvider.representativeDistrict}" type="text" class="form-control" id="representativeDistrict">
+                            </div>
+                            <div class="mb-3 col-4">
+                                <label for="city">Cidade</label>
+                                <input th:name="representativeCity" th:value="${serviceProvider.representativeCity}" type="text" class="form-control" id="city">
+                            </div>
+                            <div class="mb-3 col-4">
+                                <label for="representativeState">Estado</label>
+                                <select th:name="representativeState"
+                                        th:errorclass="is-invalid"
+                                        class="form-select" id="representativeState">
+                                    <option
+                                        th:each="state : ${states}"
+                                        th:value="${state.value}"
+                                        th:selected="${state.value == serviceProvider.representativeState}"
+                                        th:text="${state.value}"></option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <button class="btn btn-success btn-lg float-end" style="align-self: flex-end" type="submit">Salvar</button>
+            </form>
+        </div>
+        <footer th:replace="~{ base :: footer}"></footer>
+    </body>
+</html>
