@@ -6,13 +6,12 @@ import com.fatec.contracts.repository.*;
 import com.fatec.contracts.repository.projections.ContractProjection;
 import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
+import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
 import java.time.LocalDate;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @AllArgsConstructor
 @Service
@@ -27,6 +26,8 @@ public class ContractService {
     private SchoolRepository schoolRepository;
     private StudentRepository studentRepository;
     private PDFGenerator pdfGenerator;
+    private SignatureService signatureService;
+    private MessageSource messageSource;
 
     @Transactional
     public Contract save(ContractDto contractDto) {
@@ -101,7 +102,13 @@ public class ContractService {
         contract.setStudent(student);
         ServiceProvider serviceProvider = serviceProviderRepository.findById(1L).get();
         contract.setServiceProvider(serviceProvider);
-        contract.setFileData(savePDFFile(serviceProvider, student, schedule, contract));
+        byte[] file = savePDFFile(serviceProvider, student, schedule, contract);
+        String documentName = "contrato-prestacao-servico-" + responsible.getName() + "-" + responsible.getCpf();
+        signatureService.execute(Arrays.asList(responsible.getEmail(), serviceProvider.getRepresentative().getEmail()),
+                                 file,
+                                 documentName,
+                                 messageSource.getMessage("messageToSigner", null, Locale.getDefault()));
+        contract.setFileData(file);
         return contractRepository.save(contract);
     }
 

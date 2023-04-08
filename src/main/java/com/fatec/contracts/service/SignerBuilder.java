@@ -1,41 +1,21 @@
 package com.fatec.contracts.service;
 
+import java.util.List;
+
 public class SignerBuilder {
 
-    private String signer = "{";
-
-    public SignerBuilder email(String email) {
-        signer += "\"email\":\"" + email + "\",";
-        return this;
-    }
-
-    public SignerBuilder act(Integer act) {
-        signer += "\"act\":\"" + act + "\",";
-        return this;
-    }
-
-    public SignerBuilder foreign(Integer foreign) {
-        signer += "\"foreign\":\"" + foreign + "\",";
-        return this;
-    }
-
-    public SignerBuilder certificadoIcpBr(Integer certificadoIcpBr) {
-        signer += "\"certificadoicpbr\":\"" + certificadoIcpBr + "\",";
-        return this;
-    }
-
-    public SignerBuilder assinaturaPresencial(Integer assinaturaPresencial) {
-        signer += "\"assinatura_presencial\":\"" + assinaturaPresencial + "\",";
-        return this;
-    }
-
-    public SignerBuilder whatsappNumber(String whatsappNumber) {
-        signer += "\"whatsapp_number\":\"" + whatsappNumber + "\",";
-        return this;
-    }
-
-    public String build() {
-        return signer.substring(0, signer.length() - 1) + "}";
+    public static String buildSigners(List<String> emails) {
+        StringBuilder signers = new StringBuilder();
+        for(String email : emails) {
+            signers.append("{\"email\": \"")
+                    .append(email)
+                    .append("\",")
+                    .append("\"act\": \"1\",")
+                    .append("\"foreign\": \"0\",")
+                    .append("\"certificadoicpbr\": \"0\",")
+                    .append("\"assinatura_presencial\": \"0\"},");
+        }
+        return signers.substring(0, signers.length() - 1);
     }
 
 }

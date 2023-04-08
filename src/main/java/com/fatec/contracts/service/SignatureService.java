@@ -1,16 +1,17 @@
 package com.fatec.contracts.service;
 
-import com.fatec.contracts.model.Signer;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
-import java.io.FileInputStream;
 import java.io.IOException;
-import java.io.InputStream;
 import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
+import java.util.Base64;
 import java.util.List;
 
 @Service
@@ -20,29 +21,16 @@ public class SignatureService {
     private String tokenApi;
     @Value("${d4sign.api.baseUrl}")
     private String baseUrl;
+    @Value("${d4sign.api.safeContractsUuid}")
+    private String safeContractsUuid;
 
-    public HttpResponse<String> createSignatureList(String uuidDocument, List<Signer> signers) {
-        String signerOne = new SignerBuilder()
-                .email(signers.get(0).getEmail())
-                .act(signers.get(0).getAct())
-                .foreign(signers.get(0).getForeign())
-                .certificadoIcpBr(signers.get(0).getCertificadoIcpBr())
-                .assinaturaPresencial(signers.get(0).getAssinaturaPresencial())
-                .whatsappNumber(signers.get(0).getWhatsappNumber())
-                .build();
-        String signerTwo = new SignerBuilder()
-                .email(signers.get(1).getEmail())
-                .act(signers.get(1).getAct())
-                .foreign(signers.get(1).getCertificadoIcpBr())
-                .certificadoIcpBr(signers.get(1).getCertificadoIcpBr())
-                .assinaturaPresencial(signers.get(1).getAssinaturaPresencial())
-                .whatsappNumber(signers.get(1).getWhatsappNumber())
-                .build();
+    public HttpResponse<String> createSignatureList(String uuidDocument, List<String> emails) {
+        String signers = SignerBuilder.buildSigners(emails);
         try {
             HttpRequest.BodyPublisher body = HttpRequest.BodyPublishers.ofString(
-                    "{\"signers\":[" + signerOne + ", " + signerTwo + "]}");
+                    "{\"signers\":[" + signers + "]}");
             HttpRequest request = HttpRequest.newBuilder()
-                    .uri(URI.create(baseUrl + "/documents/" + uuidDocument + "/createlist"))
+                    .uri(URI.create(baseUrl + "/documents/" + uuidDocument + "/createlist?tokenAPI=" + tokenApi))
                     .header("accept", "application/json")
                     .header("content-type", "application/json")
                     .POST(body)
@@ -53,19 +41,21 @@ public class SignatureService {
         }
     }
 
-    public HttpResponse<String> uploadDocument(String uuidSafe, String pathToFile) {
-        try(InputStream stream = new FileInputStream(pathToFile)) {
-            HttpRequest.BodyPublisher body = HttpRequest.BodyPublishers.ofInputStream(() -> stream);
+    public HttpResponse<String> uploadDocument(byte[] file, String name) {
+        try {
+            String base64File = Base64.getEncoder().encodeToString(file);
+            HttpRequest.BodyPublisher body = HttpRequest.BodyPublishers.ofString("{" +
+                    "\"base64_binary_file\":\"" + base64File + "\"," +
+                    "\"mime_type\": \"application/pdf\"," +
+                    "\"name\":\"" + name + "\"}");
             HttpRequest request = HttpRequest.newBuilder()
-                    .uri(URI.create(baseUrl + "/documents/" + uuidSafe + "/upload?tokenApi="+ tokenApi))
-                    .headers("Content-Type", "multipart/form-data;",
+                    .uri(URI.create(baseUrl + "/documents/" + safeContractsUuid + "/uploadbinary?tokenAPI="+ tokenApi))
+                    .headers("Content-Type", "application/json",
                             "accept", "application/json")
                     .POST(body)
                     .build();
             return HttpClient.newHttpClient().send(request, HttpResponse.BodyHandlers.ofString());
-        } catch (IOException e) {
-            throw new RuntimeException("Não foi possível carregar o arquivo " + pathToFile + ": " + e);
-        } catch (InterruptedException e) {
+        } catch (InterruptedException | IOException e) {
             throw new RuntimeException("Não foi possível realizar o upload do documento: " + e);
         }
     }
@@ -75,16 +65,31 @@ public class SignatureService {
             HttpRequest.BodyPublisher body = HttpRequest.BodyPublishers.ofString(
                     "\"message\": \"" + message + "\"," +
                             "\"skip_email\": \"0\", " +
-                            "\"workflow\": \"0\", " +
-                            "\"tokenAPI\": \"" + tokenApi + "\"");
+                            "\"workflow\": \"0\"}");
             HttpRequest request = HttpRequest.newBuilder()
-                    .uri(URI.create(baseUrl + "/documents/" + uuidDocument + "/sendtosigner"))
+                    .uri(URI.create(baseUrl + "/documents/" + uuidDocument + "/sendtosigner?tokenAPI=" + tokenApi))
                     .header("Content-Type", "application/json")
                     .POST(body)
                     .build();
             return HttpClient.newHttpClient().send(request,  HttpResponse.BodyHandlers.ofString());
         } catch (IOException | InterruptedException e) {
             throw new RuntimeException("Não foi possível solicitar as assinaturas para o documento: " + e);
+        }
+    }
+
+    public void execute(List<String> emails, byte[] file, String fileName, String message) {
+        HttpResponse<String> uploadDocumentResponse = uploadDocument(file, fileName);
+        if(uploadDocumentResponse.statusCode() == 200) {
+            try {
+                JsonNode json = new ObjectMapper().readTree(uploadDocumentResponse.body());
+                String uuid = json.get("uuid").asText();
+                HttpResponse<String> signatureListResponse = createSignatureList(uuid, emails);
+                if(signatureListResponse.statusCode() == 200) {
+                    sendToSigners(uuid, message);
+                }
+            } catch(JsonProcessingException e) {
+                throw new RuntimeException("Não foi possível ler a resposta enviada pela API D4Sign.");
+            }
         }
     }
 
