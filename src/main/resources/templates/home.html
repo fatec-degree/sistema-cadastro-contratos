@@ -20,14 +20,14 @@
           </thead>
           <tbody th:each="contractResponseDto : ${contractsResponseDto}">
           <tr>
-            <th scope="row" th:text="${contractResponseDto.id}"></th>
-            <td th:text="${contractResponseDto.studentName}"></td>
-            <td th:text="${contractResponseDto.responsibleName}"></td>
-            <td th:text="${contractResponseDto.schoolName}"></td>
-            <td th:text="${contractResponseDto.startContract}"></td>
-            <td th:text="${contractResponseDto.endContract}"></td>
-            <td th:text="${contractResponseDto.amount}"></td>
-            <td th:text="${contractResponseDto.year}"></td>
+            <th scope="row"><a th:text="${contractResponseDto.id}" th:href="@{/contract-details/{id}(id=${contractResponseDto.id})}"></a></th>
+            <td><a th:text="${contractResponseDto.studentName}" th:href="@{/contract-details/{id}(id=${contractResponseDto.id})}"></a></td>
+            <td><a th:text="${contractResponseDto.responsibleName}" th:href="@{/contract-details/{id}(id=${contractResponseDto.id})}"></a></td>
+            <td><a th:text="${contractResponseDto.schoolName}" th:href="@{/contract-details/{id}(id=${contractResponseDto.id})}"></a></td>
+            <td><a th:text="${contractResponseDto.startContract}" th:href="@{/contract-details/{id}(id=${contractResponseDto.id})}"></a></td>
+            <td><a th:text="${contractResponseDto.endContract}" th:href="@{/contract-details/{id}(id=${contractResponseDto.id})}"></a></td>
+            <td><a th:text="${contractResponseDto.amount}" th:href="@{/contract-details/{id}(id=${contractResponseDto.id})}"></a></td>
+            <td><a th:text="${contractResponseDto.year}" th:href="@{/contract-details/{id}(id=${contractResponseDto.id})}"></a></td>
           </tr>
           </tbody>
         </table>

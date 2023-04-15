@@ -178,4 +178,9 @@ public class ContractService {
         }
     }
 
+    public Contract findById(Long id) {
+        return contractRepository.findById(id).
+                orElseThrow(() -> new RuntimeException("Contrato não encontrado."));
+    }
+
 }
