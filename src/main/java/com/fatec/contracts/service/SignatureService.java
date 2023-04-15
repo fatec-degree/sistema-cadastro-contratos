@@ -4,7 +4,9 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.autoconfigure.web.ServerProperties;
 import org.springframework.stereotype.Service;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.io.IOException;
 import java.net.URI;
@@ -19,6 +21,8 @@ public class SignatureService {
 
     @Value("${d4sign.api.token}")
     private String tokenApi;
+    @Value("${d4sign.api.cryptKey}")
+    private String cryptKey;
     @Value("${d4sign.api.baseUrl}")
     private String baseUrl;
     @Value("${d4sign.api.safeContractsUuid}")
@@ -30,7 +34,7 @@ public class SignatureService {
             HttpRequest.BodyPublisher body = HttpRequest.BodyPublishers.ofString(
                     "{\"signers\":[" + signers + "]}");
             HttpRequest request = HttpRequest.newBuilder()
-                    .uri(URI.create(baseUrl + "/documents/" + uuidDocument + "/createlist?tokenAPI=" + tokenApi))
+                    .uri(URI.create(baseUrl + "/documents/" + uuidDocument + "/createlist?tokenAPI=" + tokenApi + "&cryptKey=" + cryptKey))
                     .header("accept", "application/json")
                     .header("content-type", "application/json")
                     .POST(body)
@@ -49,7 +53,7 @@ public class SignatureService {
                     "\"mime_type\": \"application/pdf\"," +
                     "\"name\":\"" + name + "\"}");
             HttpRequest request = HttpRequest.newBuilder()
-                    .uri(URI.create(baseUrl + "/documents/" + safeContractsUuid + "/uploadbinary?tokenAPI="+ tokenApi))
+                    .uri(URI.create(baseUrl + "/documents/" + safeContractsUuid + "/uploadbinary?tokenAPI="+ tokenApi + "&cryptKey=" + cryptKey))
                     .headers("Content-Type", "application/json",
                             "accept", "application/json")
                     .POST(body)
@@ -67,13 +71,28 @@ public class SignatureService {
                             "\"skip_email\": \"0\", " +
                             "\"workflow\": \"0\"}");
             HttpRequest request = HttpRequest.newBuilder()
-                    .uri(URI.create(baseUrl + "/documents/" + uuidDocument + "/sendtosigner?tokenAPI=" + tokenApi))
+                    .uri(URI.create(baseUrl + "/documents/" + uuidDocument + "/sendtosigner?tokenAPI=" + tokenApi + "&cryptKey=" + cryptKey))
                     .header("Content-Type", "application/json")
                     .POST(body)
                     .build();
             return HttpClient.newHttpClient().send(request,  HttpResponse.BodyHandlers.ofString());
         } catch (IOException | InterruptedException e) {
             throw new RuntimeException("Não foi possível solicitar as assinaturas para o documento: " + e);
+        }
+    }
+
+    public HttpResponse<String> registerWebhook(String uuidDocument) {
+        try {
+            HttpRequest.BodyPublisher body = HttpRequest.BodyPublishers.ofString(
+                    "\"url\": \"" + ServletUriComponentsBuilder.fromCurrentContextPath().build().toUriString() + "\"}");
+            HttpRequest request = HttpRequest.newBuilder()
+                    .uri(URI.create(baseUrl + "/documents/" + uuidDocument + "/webhooks?tokenAPI=" + tokenApi + "&cryptKey=" + cryptKey))
+                    .header("Content-Type", "application/json")
+                    .POST(body)
+                    .build();
+            return HttpClient.newHttpClient().send(request,  HttpResponse.BodyHandlers.ofString());
+        } catch (IOException | InterruptedException e) {
+            throw new RuntimeException("Não foi possível registrar o webhook para o documento " + uuidDocument + "as assinaturas para o documento: " + e);
         }
     }
 
@@ -85,7 +104,10 @@ public class SignatureService {
                 String uuid = json.get("uuid").asText();
                 HttpResponse<String> signatureListResponse = createSignatureList(uuid, emails);
                 if(signatureListResponse.statusCode() == 200) {
-                    sendToSigners(uuid, message);
+                    HttpResponse<String> sendToSignersResponse = sendToSigners(uuid, message);
+                    if(sendToSignersResponse.statusCode() == 200) {
+                        registerWebhook(uuid);
+                    }
                 }
             } catch(JsonProcessingException e) {
                 throw new RuntimeException("Não foi possível ler a resposta enviada pela API D4Sign.");
