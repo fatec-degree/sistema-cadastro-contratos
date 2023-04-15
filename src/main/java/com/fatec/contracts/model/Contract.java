@@ -34,5 +34,7 @@ public class Contract {
     private boolean expired = false;
     @Lob
     private byte[] fileData;
+    @Enumerated(EnumType.STRING)
+    private ContractStatus status = ContractStatus.AGUARDANDO_ASSINATURAS;
 
 }
