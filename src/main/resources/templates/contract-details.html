@@ -222,7 +222,7 @@
                 </div>
               </div>
             </div>
-            <button class="btn btn-outline-success float-end" style="align-self: flex-end">Download PDF</button>
+            <a class="btn btn-outline-success float-end" style="align-self: flex-end" th:href="@{/contract-details/download/{id}(id=${contractDto.id})}">Download PDF</a>
           </form>
         </div>
       </div>

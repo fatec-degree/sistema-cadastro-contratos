@@ -12,6 +12,7 @@ import java.time.LocalTime;
 @Getter @Setter
 public class ContractDetailsResponseDto {
 
+    private Long id;
     private String studentName;
     private String studentRg;
     private String studentCpf;
@@ -55,6 +56,7 @@ public class ContractDetailsResponseDto {
 
     public static ContractDetailsResponseDto toContractDetailsResponseDto(Contract contract) {
         ContractDetailsResponseDto contractDetailsResponseDto = new ContractDetailsResponseDto();
+        contractDetailsResponseDto.setId(contract.getId());
         contractDetailsResponseDto.setStudentName(contract.getStudent().getName());
         contractDetailsResponseDto.setStudentRg(contract.getStudent().getRg());
         contractDetailsResponseDto.setStudentCpf(contract.getStudent().getCpf());
