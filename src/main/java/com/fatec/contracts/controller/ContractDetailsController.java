@@ -34,7 +34,7 @@ public class ContractDetailsController {
         byte[] contractPdf = contract.getFileData();
 
         // Configuração da resposta HTTP para o download do arquivo
-        response.setContentType("application/octet-stream");
+        response.setContentType("application/pdf");
         String documentName = "contrato-prestacao-servico-" + contract.getResponsible().getName() + "-" + contract.getResponsible().getCpf();
         response.setHeader("Content-Disposition", "attachment; filename=\"" + documentName + "\"");
         response.setContentLength(contractPdf.length);
