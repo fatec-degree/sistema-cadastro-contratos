@@ -13,5 +13,6 @@ public interface ContractProjection {
     LocalDate getEnd();
     BigDecimal getAmount();
     Integer getYear();
+    String getStatus();
 
 }
