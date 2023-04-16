@@ -96,12 +96,13 @@ public class SignatureService {
         }
     }
 
-    public void execute(List<String> emails, byte[] file, String fileName, String message) {
+    public String execute(List<String> emails, byte[] file, String fileName, String message) {
         HttpResponse<String> uploadDocumentResponse = uploadDocument(file, fileName);
+        String uuid = "";
         if(uploadDocumentResponse.statusCode() == 200) {
             try {
                 JsonNode json = new ObjectMapper().readTree(uploadDocumentResponse.body());
-                String uuid = json.get("uuid").asText();
+                uuid = json.get("uuid").asText();
                 HttpResponse<String> signatureListResponse = createSignatureList(uuid, emails);
                 if(signatureListResponse.statusCode() == 200) {
                     HttpResponse<String> sendToSignersResponse = sendToSigners(uuid, message);
@@ -113,6 +114,7 @@ public class SignatureService {
                 throw new RuntimeException("Não foi possível ler a resposta enviada pela API D4Sign.");
             }
         }
+        return uuid;
     }
 
 }

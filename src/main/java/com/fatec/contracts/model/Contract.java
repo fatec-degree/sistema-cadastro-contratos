@@ -36,5 +36,6 @@ public class Contract {
     private byte[] fileData;
     @Enumerated(EnumType.STRING)
     private ContractStatus status = ContractStatus.AGUARDANDO_ASSINATURAS;
+    private String uuid;
 
 }

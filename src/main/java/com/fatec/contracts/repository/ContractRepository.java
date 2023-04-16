@@ -16,4 +16,6 @@ public interface ContractRepository extends JpaRepository<Contract, Long> {
                    "INNER JOIN schools schoo on sched.school_id = schoo.id", nativeQuery = true)
     List<ContractProjection> findAllContractsForHome();
 
+    Contract findByUuid(String uuid);
+
 }

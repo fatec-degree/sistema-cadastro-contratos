@@ -123,6 +123,7 @@ CREATE TABLE IF NOT EXISTS contracts
     expired             BOOLEAN,
     file_data           LONGBLOB,
     status              VARCHAR(50),
+    uuid                VARCHAR(100),
 
     FOREIGN KEY (service_provider_id) REFERENCES service_providers (id),
     FOREIGN KEY (responsible_id) REFERENCES responsibles (id),

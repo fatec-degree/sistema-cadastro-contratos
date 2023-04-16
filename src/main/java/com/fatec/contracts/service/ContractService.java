@@ -104,10 +104,11 @@ public class ContractService {
         contract.setServiceProvider(serviceProvider);
         byte[] file = savePDFFile(serviceProvider, student, schedule, contract);
         String documentName = "contrato-prestacao-servico-" + responsible.getName() + "-" + responsible.getCpf();
-        signatureService.execute(Arrays.asList(responsible.getEmail(), serviceProvider.getRepresentative().getEmail()),
-                                 file,
-                                 documentName,
-                                 messageSource.getMessage("messageToSigner", null, Locale.getDefault()));
+        String uuid = signatureService.execute(Arrays.asList(responsible.getEmail(), serviceProvider.getRepresentative().getEmail()),
+                                               file,
+                                               documentName,
+                                               messageSource.getMessage("messageToSigner", null, Locale.getDefault()));
+        contract.setUuid(uuid);
         contract.setFileData(file);
         return contractRepository.save(contract);
     }
@@ -181,6 +182,13 @@ public class ContractService {
     public Contract findById(Long id) {
         return contractRepository.findById(id).
                 orElseThrow(() -> new RuntimeException("Contrato não encontrado."));
+    }
+
+    @Transactional
+    public void updateStatusByUuid(String uuid, ContractStatus status) {
+        Contract contract = contractRepository.findByUuid(uuid);
+        contract.setStatus(status);
+        contractRepository.save(contract);
     }
 
 }
