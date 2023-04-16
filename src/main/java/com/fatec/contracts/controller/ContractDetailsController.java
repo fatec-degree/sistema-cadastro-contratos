@@ -2,6 +2,7 @@ package com.fatec.contracts.controller;
 
 import com.fatec.contracts.controller.dto.response.ContractDetailsResponseDto;
 import com.fatec.contracts.model.Contract;
+import com.fatec.contracts.model.ContractStatus;
 import com.fatec.contracts.service.ContractService;
 import jakarta.servlet.ServletOutputStream;
 import jakarta.servlet.http.HttpServletResponse;
@@ -52,6 +53,18 @@ public class ContractDetailsController {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    @GetMapping(path = "/cancel/{id}")
+    public String cancelContract(@PathVariable Long id) {
+        contractService.updateStatus(id, ContractStatus.CANCELADO);
+        return "redirect:/contract-details/" + id;
+    }
+
+    @GetMapping(path = "/activate/{id}")
+    public String activateContract(@PathVariable Long id) {
+        contractService.updateStatus(id, ContractStatus.ATIVO);
+        return "redirect:/contract-details/" + id;
     }
 
 }

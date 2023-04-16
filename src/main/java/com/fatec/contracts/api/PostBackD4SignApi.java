@@ -18,9 +18,9 @@ public class PostBackD4SignApi {
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void updateStatusDocument(@RequestBody UpdateStatusDocumentDto updateStatusDocumentDto) {
         if(updateStatusDocumentDto.getType_post().equals("1")) {
-            contractService.updateStatusByUuid(updateStatusDocumentDto.getUuid(), ContractStatus.ATIVO);
+            contractService.updateStatus(updateStatusDocumentDto.getUuid(), ContractStatus.ATIVO);
         } else if(updateStatusDocumentDto.getType_post().equals("3")) {
-            contractService.updateStatusByUuid(updateStatusDocumentDto.getUuid(), ContractStatus.CANCELADO);
+            contractService.updateStatus(updateStatusDocumentDto.getUuid(), ContractStatus.CANCELADO);
         }
     }
 

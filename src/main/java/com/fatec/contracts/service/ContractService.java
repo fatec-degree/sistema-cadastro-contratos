@@ -185,8 +185,15 @@ public class ContractService {
     }
 
     @Transactional
-    public void updateStatusByUuid(String uuid, ContractStatus status) {
+    public void updateStatus(String uuid, ContractStatus status) {
         Contract contract = contractRepository.findByUuid(uuid);
+        contract.setStatus(status);
+        contractRepository.save(contract);
+    }
+
+    @Transactional
+    public void updateStatus(Long id, ContractStatus status) {
+        Contract contract = findById(id);
         contract.setStatus(status);
         contractRepository.save(contract);
     }

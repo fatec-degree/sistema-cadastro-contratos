@@ -222,7 +222,11 @@
                 </div>
               </div>
             </div>
-            <a class="btn btn-outline-success float-end" style="align-self: flex-end" th:href="@{/contract-details/download/{id}(id=${contractDto.id})}">Download PDF</a>
+            <a class="btn btn-outline-primary float-end" style="align-self: flex-end; margin-left: 10px;" th:href="@{/contract-details/download/{id}(id=${contractDto.id})}">Download PDF</a>
+            <th:block th:switch="${contractDto.status.name()}">
+              <a th:case="'ATIVO'" class="btn btn-outline-danger float-end" style="align-self: flex-end" th:href="@{/contract-details/cancel/{id}(id=${contractDto.id})}">Cancelar</a>
+              <a th:case="'CANCELADO'" class="btn btn-outline-success float-end" style="align-self: flex-end" th:href="@{/contract-details/activate/{id}(id=${contractDto.id})}">Ativar</a>
+            </th:block>
           </form>
         </div>
       </div>
