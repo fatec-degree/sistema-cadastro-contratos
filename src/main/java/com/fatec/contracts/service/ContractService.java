@@ -198,4 +198,11 @@ public class ContractService {
         contractRepository.save(contract);
     }
 
+    @Transactional
+    public void updateFile(Long id, byte[] file) {
+        Contract contract = findById(id);
+        contract.setFileData(file);
+        contractRepository.save(contract);
+    }
+
 }

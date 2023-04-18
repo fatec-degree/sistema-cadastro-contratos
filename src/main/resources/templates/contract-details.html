@@ -222,12 +222,28 @@
                 </div>
               </div>
             </div>
-            <a class="btn btn-outline-primary float-end" style="align-self: flex-end; margin-left: 10px;" th:href="@{/contract-details/download/{id}(id=${contractDto.id})}">Download PDF</a>
-            <th:block th:switch="${contractDto.status.name()}">
-              <a th:case="'ATIVO'" class="btn btn-outline-danger float-end" style="align-self: flex-end" th:href="@{/contract-details/cancel/{id}(id=${contractDto.id})}">Cancelar</a>
-              <a th:case="'CANCELADO'" class="btn btn-outline-success float-end" style="align-self: flex-end" th:href="@{/contract-details/activate/{id}(id=${contractDto.id})}">Ativar</a>
-            </th:block>
           </form>
+          <div class="row">
+            <div class="col-6">
+              <form method="post" th:action="@{/contract-details/upload/{id}(id=${contractDto.id})}" enctype="multipart/form-data">
+                <div class="row mb-3">
+                  <div class="col-8">
+                    <input class="form-control" type="file" id="file" name="file">
+                  </div>
+                  <div class="col-4">
+                    <button class="btn btn-outline-secondary" type="submit">Upload PDF</button>
+                  </div>
+                </div>
+              </form>
+            </div>
+            <div class="col-6">
+              <a class="btn btn-outline-primary float-end" style="align-self: flex-end; margin-left: 10px;" th:href="@{/contract-details/download/{id}(id=${contractDto.id})}">Download PDF</a>
+              <th:block th:switch="${contractDto.status.name()}">
+                <a th:case="'ATIVO'" class="btn btn-outline-danger float-end" style="align-self: flex-end" th:href="@{/contract-details/cancel/{id}(id=${contractDto.id})}">Cancelar</a>
+                <a th:case="'CANCELADO'" class="btn btn-outline-success float-end" style="align-self: flex-end" th:href="@{/contract-details/activate/{id}(id=${contractDto.id})}">Ativar</a>
+              </th:block>
+            </div>
+          </div>
         </div>
       </div>
     </div>

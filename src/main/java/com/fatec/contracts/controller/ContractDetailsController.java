@@ -8,9 +8,8 @@ import jakarta.servlet.ServletOutputStream;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.io.IOException;
@@ -27,6 +26,13 @@ public class ContractDetailsController {
         ModelAndView mv = new ModelAndView("contract-details");
         mv.addObject("contractDto", ContractDetailsResponseDto.toContractDetailsResponseDto(contractService.findById(id)));
         return mv;
+    }
+
+    @PostMapping(path = "/upload/{id}")
+    public String uploadContract(@PathVariable Long id, @RequestParam("file") MultipartFile file) throws IOException {
+        byte[] fileData = file.getBytes();
+        contractService.updateFile(id, fileData);
+        return "redirect:/contract-details/" + id;
     }
 
     @GetMapping(path = "/download/{id}")
