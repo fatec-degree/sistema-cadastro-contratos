@@ -16,5 +16,6 @@ public class Responsible extends AbstractPerson {
     private Long id;
     private String emergencyContact;
     private String relationship;
+    private String remarks;
 
 }

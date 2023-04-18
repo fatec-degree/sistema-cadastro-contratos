@@ -1,7 +1,10 @@
 package com.fatec.contracts.controller.dto.response;
 
 import com.fatec.contracts.repository.projections.ContractProjection;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -19,6 +22,7 @@ public class ContractResponseDto {
     private LocalDate endContract;
     private BigDecimal amount;
     private Integer year;
+    private String status;
 
     public ContractResponseDto(ContractProjection contractProjection) {
         this.id = contractProjection.getId();
@@ -29,6 +33,7 @@ public class ContractResponseDto {
         this.endContract = contractProjection.getEnd();
         this.amount = contractProjection.getAmount();
         this.year = contractProjection.getYear();
+        this.status = contractProjection.getStatus();
     }
 
     public static List<ContractResponseDto> toContractResponseDto(List<ContractProjection> contractProjections) {

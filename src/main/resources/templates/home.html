@@ -5,6 +5,14 @@
       <div th:replace="~{ base :: header }"></div>
       <div class="container" style="margin-bottom: 5em">
         <div th:replace="~{base :: titleOutdoor('Contratos')}"></div>
+        <div class="mb-10" style="margin-top: 10px; margin-bottom: 20px; float: right;">
+          <ul class="subtitles">
+            <li class="text-success-emphasis">ATIVO<div class="circle bg-success-subtle border border-success"></div></li>
+            <li class="text-warning-emphasis">AGUARDANDO ASSINATURAS<div class="circle bg-warning-subtle border border-warning border"></div></li>
+            <li class="text-danger-emphasis">CANCELADO<div class="circle bg-danger-subtle  border border-danger"></div></li>
+            <li class="text-body-emphasis">EXPIRADO<div class="circle bg-dark-subtle border border-dark"></div></li>
+          </ul>
+        </div>
         <table class="table">
           <thead>
           <tr>
@@ -16,18 +24,25 @@
             <th scope="col">Fim do Contrato</th>
             <th scope="col">Valor Total</th>
             <th scope="col">Ano</th>
+            <th scope="col">Status</th>
           </tr>
           </thead>
           <tbody th:each="contractResponseDto : ${contractsResponseDto}">
           <tr>
-            <th scope="row" th:text="${contractResponseDto.id}"></th>
-            <td th:text="${contractResponseDto.studentName}"></td>
-            <td th:text="${contractResponseDto.responsibleName}"></td>
-            <td th:text="${contractResponseDto.schoolName}"></td>
-            <td th:text="${contractResponseDto.startContract}"></td>
-            <td th:text="${contractResponseDto.endContract}"></td>
-            <td th:text="${contractResponseDto.amount}"></td>
-            <td th:text="${contractResponseDto.year}"></td>
+            <th scope="row"><a th:text="${contractResponseDto.id}" th:href="@{/contract-details/{id}(id=${contractResponseDto.id})}"></a></th>
+            <td><a th:text="${contractResponseDto.studentName}" th:href="@{/contract-details/{id}(id=${contractResponseDto.id})}"></a></td>
+            <td><a th:text="${contractResponseDto.responsibleName}" th:href="@{/contract-details/{id}(id=${contractResponseDto.id})}"></a></td>
+            <td><a th:text="${contractResponseDto.schoolName}" th:href="@{/contract-details/{id}(id=${contractResponseDto.id})}"></a></td>
+            <td><a th:text="${contractResponseDto.startContract}" th:href="@{/contract-details/{id}(id=${contractResponseDto.id})}"></a></td>
+            <td><a th:text="${contractResponseDto.endContract}" th:href="@{/contract-details/{id}(id=${contractResponseDto.id})}"></a></td>
+            <td><a th:text="${contractResponseDto.amount}" th:href="@{/contract-details/{id}(id=${contractResponseDto.id})}"></a></td>
+            <td><a th:text="${contractResponseDto.year}" th:href="@{/contract-details/{id}(id=${contractResponseDto.id})}"></a></td>
+            <th:block th:switch="${contractResponseDto.status}">
+              <td th:case="'ATIVO'" class="table-success"><a th:href="@{/contract-details/{id}(id=${contractResponseDto.id})}"></a></td>
+              <td th:case="'CANCELADO'" class="table-danger"><a th:href="@{/contract-details/{id}(id=${contractResponseDto.id})}"></a></td>
+              <td th:case="'AGUARDANDO_ASSINATURAS'" class="table-warning"><a th:href="@{/contract-details/{id}(id=${contractResponseDto.id})}"></a></td>
+              <td th:case="'EXPIRADO'" class="table-secondary"><a th:href="@{/contract-details/{id}(id=${contractResponseDto.id})}"></a></td>
+            </th:block>
           </tr>
           </tbody>
         </table>

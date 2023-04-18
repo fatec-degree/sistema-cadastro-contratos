@@ -6,13 +6,12 @@ import com.fatec.contracts.repository.*;
 import com.fatec.contracts.repository.projections.ContractProjection;
 import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
+import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
 import java.time.LocalDate;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @AllArgsConstructor
 @Service
@@ -27,6 +26,8 @@ public class ContractService {
     private SchoolRepository schoolRepository;
     private StudentRepository studentRepository;
     private PDFGenerator pdfGenerator;
+    private SignatureService signatureService;
+    private MessageSource messageSource;
 
     @Transactional
     public Contract save(ContractDto contractDto) {
@@ -74,6 +75,7 @@ public class ContractService {
         responsible.setEmail(contractDto.getResponsibleEmail());
         responsible.setEmergencyContact(contractDto.getResponsibleEmergencyContact());
         responsible.setRelationship(contractDto.getResponsibleRelationship());
+        responsible.setRemarks(contractDto.getResponsibleRemarks());
         responsible = responsibleRepository.save(responsible);
 
         Student student = new Student();
@@ -100,7 +102,14 @@ public class ContractService {
         contract.setStudent(student);
         ServiceProvider serviceProvider = serviceProviderRepository.findById(1L).get();
         contract.setServiceProvider(serviceProvider);
-        contract.setFileData(savePDFFile(serviceProvider, student, schedule, contract));
+        byte[] file = savePDFFile(serviceProvider, student, schedule, contract);
+        String documentName = "contrato-prestacao-servico-" + responsible.getName() + "-" + responsible.getCpf();
+        String uuid = signatureService.execute(Arrays.asList(responsible.getEmail(), serviceProvider.getRepresentative().getEmail()),
+                                               file,
+                                               documentName,
+                                               messageSource.getMessage("messageToSigner", null, Locale.getDefault()));
+        contract.setUuid(uuid);
+        contract.setFileData(file);
         return contractRepository.save(contract);
     }
 
@@ -159,7 +168,7 @@ public class ContractService {
         fieldValues.put("Text53", student.getResponsible().getContacts());
         fieldValues.put("Text54", student.getResponsible().getEmergencyContact());
         fieldValues.put("Text55", student.getHealthCondition().toString());
-        fieldValues.put("Text56", "xxx");
+        fieldValues.put("Text56", student.getResponsible().getRemarks());
         pdfGenerator.fillFields(fieldValues);
         try {
             return pdfGenerator.saveDocument();
@@ -168,6 +177,32 @@ public class ContractService {
         } finally {
             pdfGenerator.closeDocument();
         }
+    }
+
+    public Contract findById(Long id) {
+        return contractRepository.findById(id).
+                orElseThrow(() -> new RuntimeException("Contrato não encontrado."));
+    }
+
+    @Transactional
+    public void updateStatus(String uuid, ContractStatus status) {
+        Contract contract = contractRepository.findByUuid(uuid);
+        contract.setStatus(status);
+        contractRepository.save(contract);
+    }
+
+    @Transactional
+    public void updateStatus(Long id, ContractStatus status) {
+        Contract contract = findById(id);
+        contract.setStatus(status);
+        contractRepository.save(contract);
+    }
+
+    @Transactional
+    public void updateFile(Long id, byte[] file) {
+        Contract contract = findById(id);
+        contract.setFileData(file);
+        contractRepository.save(contract);
     }
 
 }

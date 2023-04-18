@@ -70,6 +70,7 @@ CREATE TABLE IF NOT EXISTS responsibles
     secondary_contact VARCHAR(15),
     email             VARCHAR(200) UNIQUE,
     emergency_contact VARCHAR(500),
+    remarks           VARCHAR(500),
 
     FOREIGN KEY (address_id) REFERENCES addresses (id)
 );
@@ -121,6 +122,8 @@ CREATE TABLE IF NOT EXISTS contracts
     end                 DATE,
     expired             BOOLEAN,
     file_data           LONGBLOB,
+    status              VARCHAR(50),
+    uuid                VARCHAR(100),
 
     FOREIGN KEY (service_provider_id) REFERENCES service_providers (id),
     FOREIGN KEY (responsible_id) REFERENCES responsibles (id),

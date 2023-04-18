@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="pr-br">
+  <head th:replace="~{ base :: head('Detalhes do Contrato') }"></head>
+  <body>
+    <div th:replace="~{ base :: header }"></div>
+    <div class="container" style="margin-bottom: 5em">
+      <div th:replace="~{base :: titleOutdoor('Detalhes do Contrato')}"></div>
+      <div class="card" style="width: 100%;">
+        <th:block th:switch="${contractDto.status.name()}">
+          <div th:case="'ATIVO'" class="card-header alert alert-success" style="height: 80px; text-align: center; font-weight: bold; font-size: xx-large">
+            <p>CONTRATO ATIVO</p>
+          </div>
+          <div th:case="'CANCELADO'" class="card-header alert alert-danger" style="height: 80px; text-align: center; font-weight: bold; font-size: xx-large">
+            <p>CONTRATO CANCELADO</p>
+          </div>
+          <div th:case="'AGUARDANDO_ASSINATURAS'" class="card-header alert alert-warning" style="height: 80px; text-align: center; font-weight: bold; font-size: xx-large">
+            <p>AGUARDANDO ASSINATURAS DO DOCUMENTO</p>
+          </div>
+          <div th:case="'EXPIRADO'" class="card-header alert alert-dark" style="height: 80px; text-align: center; font-weight: bold; font-size: xx-large">
+            <p>CONTRATO EXPIRADO</p>
+          </div>
+        </th:block>
+        <div class="card-body">
+          <form method="get">
+            <div>
+              <h3 class="mb-3">Dados do Aluno</h3>
+              <div class="mb-3">
+                <label>Nome</label>
+                <input th:value="${contractDto.studentName}" type="text" class="form-control" readonly>
+              </div>
+              <div class="row">
+                <div class="mb-3 col-4">
+                  <label class="form-label">RG</label>
+                  <input th:value="${contractDto.studentRg}" type="number" class="form-control" readonly>
+                </div>
+                <div class="mb-3 col-4">
+                  <label class="form-label">CPF</label>
+                  <input th:value="${contractDto.studentCpf}" type="number" class="form-control" readonly>
+                </div>
+                <div class="mb-3 col-4">
+                  <label class="form-label">Data de Nascimento</label>
+                  <input th:value="${contractDto.studentDateOfBirth}" type="date" class="form-control" readonly>
+                </div>
+              </div>
+            </div>
+            <div>
+              <h3 class="mb-3">Endereço do Aluno</h3>
+              <div class="mb-3">
+                <label>CEP</label>
+                <input th:value="${contractDto.studentZipCode}" type="number" class="form-control" readonly>
+              </div>
+              <div class="row">
+                <div class="mb-3 col-8">
+                  <label>Logradouro</label>
+                  <input th:value="${contractDto.studentStreet}" type="text" class="form-control" readonly>
+                </div>
+                <div class="mb-3 col-4">
+                  <label>Número</label>
+                  <input th:value="${contractDto.studentHouseNumber}" type="number" class="form-control" readonly>
+                </div>
+              </div>
+              <div class="row">
+                <div class="mb-3 col-4">
+                  <label>Bairro</label>
+                  <input th:value="${contractDto.studentDistrict}" type="text" class="form-control" readonly>
+                </div>
+                <div class="mb-3 col-4">
+                  <label>Cidade</label>
+                  <input th:value="${contractDto.studentCity}" type="text" class="form-control" readonly>
+                </div>
+                <div class="mb-3 col-4">
+                  <label>Estado</label>
+                  <input th:value="${contractDto.studentState}" type="text" class="form-control" readonly>
+                </div>
+              </div>
+            </div>
+            <div>
+              <h3 class="mb-3">Condições de saúde do aluno</h3>
+              <div class="row">
+                <div class="mb-3 col-6">
+                  <label>Doenças</label>
+                  <textarea th:value="${contractDto.studentSickness}" class="form-control" readonly></textarea>
+                </div>
+                <div class="mb-3 col-6">
+                  <label>Alergias</label>
+                  <textarea th:value="${contractDto.studentAllergies}" class="form-control" readonly></textarea>
+                </div>
+              </div>
+              <div class="row">
+                <div class="mb-3 col-6">
+                  <label>Remédios</label>
+                  <textarea th:value="${contractDto.studentMedicines}" class="form-control" readonly></textarea>
+                </div>
+                <div class="mb-3 col-6">
+                  <label>Observações</label>
+                  <textarea th:value="${contractDto.studentHealthRemarks}" class="form-control" readonly></textarea>
+                </div>
+              </div>
+            </div>
+            <div>
+              <h3 class="mb-3">Dados da Escola</h3>
+              <div class="row">
+                <div class="mb-3 col-8">
+                  <label>Nome</label>
+                  <input th:value="${contractDto.schoolName}" type="text" class="form-control" readonly>
+                </div>
+                <div class="mb-3 col-4">
+                  <label>CEP</label>
+                  <input th:value="${contractDto.schoolZipCode}" type="number" class="form-control" readonly>
+                </div>
+              </div>
+              <div class="row">
+                <div class="mb-3 col-8">
+                  <label>Logradouro</label>
+                  <input th:value="${contractDto.schoolStreet}" type="text" class="form-control" readonly>
+                </div>
+                <div class="mb-3 col-4">
+                  <label>Número</label>
+                  <input th:value="${contractDto.schoolNumber}" type="number" class="form-control" readonly>
+                </div>
+              </div>
+              <div class="row">
+                <div class="mb-3 col-4">
+                  <label>Bairro</label>
+                  <input th:value="${contractDto.schoolDistrict}" type="text" class="form-control" readonly>
+                </div>
+                <div class="mb-3 col-4">
+                  <label>Cidade</label>
+                  <input th:value="${contractDto.schoolCity}" type="text" class="form-control" readonly>
+                </div>
+                <div class="mb-3 col-4">
+                  <label>Estado</label>
+                  <input th:value="${contractDto.schoolState}" type="text" class="form-control" readonly>
+                </div>
+              </div>
+              <div class="row">
+                <div class="mb-3 col-6">
+                  <label>Entrada</label>
+                  <input th:value="${contractDto.entryTime}" type="time" class="form-control" readonly>
+                </div>
+                <div class="mb-3 col-6">
+                  <label>Saída</label>
+                  <input th:value="${contractDto.departureTime}" type="time" class="form-control" readonly>
+                </div>
+              </div>
+            </div>
+            <div>
+              <h3 class="mb-3">Dados do Responsável</h3>
+              <div class="mb-3">
+                <label>Nome</label>
+                <input th:value="${contractDto.responsibleName}" type="text" class="form-control" readonly>
+              </div>
+              <div class="row">
+                <div class="mb-3 col-3">
+                  <label>RG</label>
+                  <input th:value="${contractDto.responsibleRg}" type="number" class="form-control" readonly>
+                </div>
+                <div class="mb-3 col-3">
+                  <label>CPF</label>
+                  <input th:value="${contractDto.responsibleCpf}" type="number" class="form-control" readonly>
+                </div>
+                <div class="mb-3 col-3">
+                  <label>Data de Nascimento</label>
+                  <input th:value="${contractDto.responsibleDateOfBirth}" type="date" class="form-control" readonly>
+                </div>
+                <div class="mb-3 col-3">
+                  <label>Parentesco</label>
+                  <input th:value="${contractDto.responsibleRelationship}" type="text" class="form-control" readonly>
+                </div>
+              </div>
+              <div class="row">
+                <div class="mb-3 col-4">
+                  <label>Contato Principal</label>
+                  <input th:value="${contractDto.responsibleMainContact}" type="number" class="form-control" readonly>
+                </div>
+                <div class="mb-3 col-4">
+                  <label>Contato Secundário</label>
+                  <input th:value="${contractDto.responsibleSecondaryContact}" type="number" class="form-control" readonly>
+                </div>
+                <div class="mb-3 col-4">
+                  <label>E-mail</label>
+                  <input th:value="${contractDto.responsibleEmail}" type="email" class="form-control" readonly>
+                </div>
+              </div>
+              <div class="mb-3">
+                <label>Em caso de urgência contatar:</label>
+                <textarea th:value="${contractDto.responsibleEmergencyContact}" class="form-control" readonly></textarea>
+              </div>
+              <div class="mb-3">
+                <label>Observações:</label>
+                <textarea th:value="${contractDto.responsibleRemarks}" class="form-control" readonly></textarea>
+              </div>
+            </div>
+            <div>
+              <h3 class="mb-3">Valores do Contrato</h3>
+              <div class="row">
+                <div class="mb-3 col-4">
+                  <label>Valor Anual</label>
+                  <input th:value="${contractDto.amount}" type="number" class="form-control" readonly>
+                </div>
+                <div class="mb-3 col-4">
+                  <label>Número de Parcelas</label>
+                  <input th:value="${contractDto.numberOfParcels}" type="number" class="form-control" readonly>
+                </div>
+                <div class="mb-3 col-4">
+                  <label>Valor da Parcela</label>
+                  <input th:value="${contractDto.parcelValue}" type="number" class="form-control" readonly>
+                </div>
+              </div>
+              <div class="row">
+                <div class="mb-3 col-4">
+                  <label>Referente ao ano</label>
+                  <input th:value="${contractDto.year}" type="number" class="form-control" readonly>
+                </div>
+                <div class="mb-3 col-4">
+                  <label>Primeira Parcela</label>
+                  <input th:value="${contractDto.firstParcel}" type="date" class="form-control" readonly>
+                </div>
+                <div class="mb-3 col-4">
+                  <label>Dia de Pagamento</label>
+                  <input th:value="${contractDto.collectionDay}" type="number" class="form-control" readonly>
+                </div>
+              </div>
+            </div>
+          </form>
+          <div class="row">
+            <div class="col-6">
+              <form method="post" th:action="@{/contract-details/upload/{id}(id=${contractDto.id})}" enctype="multipart/form-data">
+                <div class="row mb-3">
+                  <div class="col-8">
+                    <input class="form-control" type="file" id="file" name="file">
+                  </div>
+                  <div class="col-4">
+                    <button class="btn btn-outline-secondary" type="submit">Upload PDF</button>
+                  </div>
+                </div>
+              </form>
+            </div>
+            <div class="col-6">
+              <a class="btn btn-outline-primary float-end" style="align-self: flex-end; margin-left: 10px;" th:href="@{/contract-details/download/{id}(id=${contractDto.id})}">Download PDF</a>
+              <th:block th:switch="${contractDto.status.name()}">
+                <a th:case="'ATIVO'" class="btn btn-outline-danger float-end" style="align-self: flex-end" th:href="@{/contract-details/cancel/{id}(id=${contractDto.id})}">Cancelar</a>
+                <a th:case="'CANCELADO'" class="btn btn-outline-success float-end" style="align-self: flex-end" th:href="@{/contract-details/activate/{id}(id=${contractDto.id})}">Ativar</a>
+              </th:block>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <footer th:replace="~{ base :: footer }"></footer>
+  </body>
+</html>
