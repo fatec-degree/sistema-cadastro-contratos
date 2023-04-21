@@ -6,6 +6,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface ContractRepository extends JpaRepository<Contract, Long> {
 
@@ -16,6 +17,6 @@ public interface ContractRepository extends JpaRepository<Contract, Long> {
                    "INNER JOIN schools schoo on sched.school_id = schoo.id", nativeQuery = true)
     List<ContractProjection> findAllContractsForHome();
 
-    Contract findByUuid(String uuid);
+    Optional<Contract> findByUuid(String uuid);
 
 }

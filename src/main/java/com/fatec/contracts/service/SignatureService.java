@@ -84,13 +84,13 @@ public class SignatureService {
     public HttpResponse<String> registerWebhook(String uuidDocument) {
         try {
             HttpRequest.BodyPublisher body = HttpRequest.BodyPublishers.ofString(
-                    "\"url\": \"" + ServletUriComponentsBuilder.fromCurrentContextPath().build().toUriString() + "\"}");
+                    "{\"url\": \"" + ServletUriComponentsBuilder.fromCurrentContextPath().build().toUriString() + "/api/d4sign-webhook/" + "\"}");
             HttpRequest request = HttpRequest.newBuilder()
                     .uri(URI.create(baseUrl + "/documents/" + uuidDocument + "/webhooks?tokenAPI=" + tokenApi + "&cryptKey=" + cryptKey))
                     .header("Content-Type", "application/json")
                     .POST(body)
                     .build();
-            return HttpClient.newHttpClient().send(request,  HttpResponse.BodyHandlers.ofString());
+            return HttpClient.newHttpClient().send(request, HttpResponse.BodyHandlers.ofString());
         } catch (IOException | InterruptedException e) {
             throw new RuntimeException("Não foi possível registrar o webhook para o documento " + uuidDocument + "as assinaturas para o documento: " + e);
         }
