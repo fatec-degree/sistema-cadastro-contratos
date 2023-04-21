@@ -186,7 +186,8 @@ public class ContractService {
 
     @Transactional
     public void updateStatus(String uuid, ContractStatus status) {
-        Contract contract = contractRepository.findByUuid(uuid);
+        Contract contract = contractRepository.findByUuid(uuid)
+                .orElseThrow(() -> new RuntimeException("Contrato não encontrado."));
         contract.setStatus(status);
         contractRepository.save(contract);
     }
